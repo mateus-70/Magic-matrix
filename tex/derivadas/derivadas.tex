@@ -1,0 +1,46 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\input{../trig.tex}
+\input{../funcoes.tex}
+
+\begin{document}
+    \begin{tabular}{|c|c|}
+        \hline
+        $y = u^n$                   &    $y' = nu^{n-1}u'$ \\ \hline
+        $y = uv$                    &    $y' = u'v + v'u$ \\ \hline
+        $y = \dfrac{u}{v}$          &    $y' = \dfrac{u'v - v'u}{v^2}$ \\ \hline
+        $y = a^u, 1 \neq a > 0$     &    $y' = u'a^u \ln a$ \\ \hline
+        $y = \sen u$                &    $y' = u' \cos u$ \\ \hline
+        $y = \cos u$                &    $y' = -u' \sen u$ \\ \hline
+        $y = \tg u$                 &    $y' = u' \sec u^2$ \\ \hline
+        $y = \cotg u$               &    $y' = -u' \cossec u^2$ \\ \hline
+        $y = \sec u$ &    $y' = u' \tg u \sec u$ \\ \hline
+        $y = \cossec u$ &    $y' = -u' \cossec u \cotg u$ \\ \hline
+        $y = \senh u$ &    $y' = u' \cosh u$ \\ \hline
+        $y = \cosh u$ &    $y' = u' \senh u$ \\ \hline
+        $y = \tgh u$ &    $y' = u' \sech u^2$ \\ \hline
+        $y = \cotgh u$ &    $y' = -u' \cossech u^2$ \\ \hline
+        $y = \sech u$ &    $y' = -u' \sech u \tgh u$ \\ \hline
+        $y = \cossech u$ &    $y' = -u' \cossech u \cotgh u$ \\ \hline
+        $y = \arcsen u$ &    $y' = \dfrac{u'}{\sqrt{1 - u^2}}$ \\ \hline
+        $y = \arccos u$ &    $y' = - \dfrac{u'}{\sqrt{1 - u^2}}$ \\ \hline
+        $y = \arctg u$ &    $y' = \dfrac{u'}{1+u^2}$ \\ \hline
+        $y = \arccotg u$ &    $y' = - \dfrac{u'}{1+u^2}$ \\ \hline
+        $y = \arcsec u, \abs u$ &    $y' = \dfrac{u'}{\abs u \sqrt{u^2 - 1}}, \abs u > 1$ \\ \hline
+        $y = \arccossec u, \abs u \ge 1$ &    $y' = -\dfrac{u'}{\abs u \sqrt{u^2 - 1}}, \abs u > 1$ \\ \hline
+        $y = \arsenh u$ &    $y' = \dfrac{u'}{\sqrt{u^2 + 1}}$ \\ \hline
+        $y = \arcosh u$ &    $y' = \dfrac{u'}{\sqrt{u^2-1}}, u>1$ \\ \hline
+        $y = \artgh u$ &    $y' = \dfrac{u'}{1-u^2}, \abs u < 1$ \\ \hline
+        $y = \arcotgh u$ &    $y' = \dfrac{u'}{1 - u^2}, \abs u < 1$ \\ \hline
+        $y = \arsech u$ &    $y' = -\dfrac{u'}{u \sqrt{1 - u^2}}, 0 < u < 1$ \\ \hline
+        $y = \arcossech u$ &    $y' = -\dfrac{u'}{\abs u \sqrt{1 + u^2}}, u \neq 0$ \\ \hline
+        $y = \ u$ &    $y' = $ \\ \hline
+        \hline
+    \end{tabular}
+\end{document}

@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\begin{document}
+    Exercício número 10, da lista.
+    Mateus Schroeder da Silva
+    \begin{equation}
+        \int_{-1}^{3}\mathrm{4-x^2}\,\text{d}x
+    \end{equation}
+    a) Deverá ser dividido em 3 intervalos, $[-1,\, 0]$, $[0,2]$, $[2,3]$
+    pois do primeiro intervalo para o segundo ela muda o sinal da primeira derivada.
+    E do segundo para o terceiro pois a função está acima do eixo x no segundo intervalo,
+    e abaixo no terceiro. No primeiro intervalo o "melhor" retângulo inscrito tem altura 
+    $ = f(x)$ tal que $f(x)$ é o extremo esquerdo. No terceiro também é no extremo esquerdo.
+    No segundo é no extremo direito que se consegue o "melhor" retângulo inscrito.
+
+    c) Não calcula área, pois a integral só calcula área quando a função em questão tem
+    $\forall x, f(x) \ge 0 $.
+
+    b) Considerando a partição P dividida em segmentos congruentes temos:
+    \begin{gather*}
+        m_1\Delta x + m_2 \Delta x + \hdots + m_n \Delta x = \\
+        f(x_1)\Delta x + f(x_2)\Delta x + f(x_3)\Delta x + \hdots + f(x_n)\Delta x = \\
+        f(1\Delta x + x_0) + f(2\Delta x + x_0) + f(3\Delta x + x_0) \hdots f(n\Delta x + x_0)\\
+        \text{Como} \\
+        x_0 = 0 \\
+        f(1 \Delta x) + f(2 \Delta x) + f(3 \Delta x) + \hdots f(n \Delta x) = \\
+        \left[ 4 - ( 1 \Delta x )^2\right] \Delta x + \left[4 - (2 \Delta x)^2\right] \Delta x + \left[4 - (3 \Delta x)^2\right] \Delta x + \hdots + \left[4 - (n \Delta x)^2\right] \Delta x = \\
+        \Delta x [ 4n - \Delta x^2 (1^2 + 2^2 + 3^2 + \hdots + n^2) ] = \\
+        \Delta x \left[ 4n - \Delta x^2 \left[\dfrac{n(n+1)(2n+1)}{6}\right] \right]
+       % \Delta x \left{ 4n - \Delta x^2 \left[ \dfrac{ k(k+1) (2k+1) }{6} \right] \right} = \\
+        \text{Como} \\
+        \Delta x = \dfrac{2}{n} \\
+        \dfrac{2}{n} \left[ 4n - \dfrac{4}{n^2}  \dfrac{n(n+1)(2n+1)}{6} \right] = \\
+        8 - \dfrac{8 \left( 2n^3 + 3n^2 + n\right) }{6n} = \\
+        8 - ( \dfrac{16n^3}{6n^3} +  \dfrac{24n^2}{6n^3} +  \dfrac{8}{6n^3} ) \\
+        \dfrac{32}{6} - \left[ \dfrac{4}{n} + \dfrac{4}{3n^2} \right] \\
+        \text{ Como o limite da equação acima quando n} \rightarrow \infty \text{ é } \frac{32}{6} \text{, este é o valor da integral.} \\ 
+     \end{gather*}
+\end{document}

@@ -1,0 +1,112 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\input{/home/mateus/ban/funcoes.tex}
+%\input{/home/mateus/ban/trig.tex}
+
+% plain definition remark em theoremstyle
+    
+
+    \newtheoremstyle{mydef}% name of the style to be used
+      {}% measure of space to leave above the theorem. E.g.: 3pt
+      {}% measure of space to leave below the theorem. E.g.: 3pt
+      {}% name of font to use in the body of the theorem
+      {}% measure of space to indent
+      {}% name of head font
+      {}% punctuation between head and body
+      {}% space after theorem head; " " = normal interword space
+      {\thmnote{#3} }% Manually specify head
+
+    %\theoremstyle{mydef}
+    \newtheorem{mydef}{}
+
+    \theoremstyle{remark}
+    \newtheorem*{remark}{Nota}
+
+    \theoremstyle{plain}
+    \newtheorem{theorem}{Teorema}
+
+    \theoremstyle{plain}
+    \newtheorem{corolary}{Corolário}
+
+    \theoremstyle{plain}
+    \newtheorem{lemma}{Lema}
+\begin{document}
+\begin{mydef}[Ponto interior]
+        Diz-se que o ponto $a$ é interior ao conjunto $X \subset \mathbb{R}$ quando existe um número 
+        $\epsilon > 0$ tal que o intervalo aberto $(a-\epsilon, a+\epsilon)$ está contido em $X$.
+    \end{mydef}
+    %\begin{definition}{Interior de um conjunto}
+        %O conjunto dos pontos interiores a $X$ chama-se o interior do conjunto $X$ e representa-se pela notação $int X$.
+    %\end{definition}
+    %\begin{definition}{Vizinhança}
+        %Quando $a \in int X$ diz-se que o conjunto $X$ é uma vizinhança do ponto $a$.
+    %\end{definition}
+    %\begin{definition}{Conjunto aberto}
+       %Diz-se que $X$ é um conjunto aberto, se $int X = X$ 
+    %\end{definition}
+    %\begin{definition}{Ponto aderente}
+        %Diz-se que um ponto $a$ é aderente a $X \subset \mathbb{R}$
+        %quando $a$ for limite de uma sequência $x_n \in X$.
+    %\end{definition}
+    %\begin{remark}
+        %Todo ponto de $X$ é aderente a $X$.
+    %\end{remark}
+    %\begin{definition}{Fecho}
+        %Chamaremos de fecho do conjunto $X$ ao conjunto $\overline{X}$ formado pelos pontos aderentes a $X$.
+    %\end{definition}
+    %\begin{remark}
+        %Tem-se $X \subset \overline{X}$. Se $X \subset Y$ então $\overline{X} \subset \overline{Y}$
+    %\end{remark}
+    %\begin{definition}{Conjunto fechado}
+        %É quando o conjunto é igual ao seu fecho.
+    %\end{definition}
+    %\begin{definition}{Denso}
+        %Diremos que $X$ é denso em $Y$ quando $Y \subset \overline{X}$ isto é, quando todo $b \in Y$ é aderente a $X$.
+    %\end{definition}
+    %\begin{definition}{Cisão}
+        %Uma cisão de um conjunto $X \subset \mathbb{R}$ é uma decomposição $X = A \cup B$ 
+        %tal que $A \cap BBB = vazio$ e $AAA \cap B = vazio$, isto é, nenhum ponto de $A$
+        %é aderente a $B$ e nenhum ponto de $B$ é aderente a $A$.
+    %\end{definition}
+    %\begin{remark}
+        %Em particular $A$ e $B$ são disjuntos. A decomposição $X = X \cup vazio$ chama-se a cisão trivial.
+    %\end{remark}
+    %\begin{definition}{Ponto de acumulação}
+        %Seja $X \subset \mathbb{R}$. Um número $a \in \mathbb{X}$ chama-se 
+        %ponto de acumulação do conjunto $X$ quando todo intervalo aberto
+        %$(a-\epsilon, a+\epsilon)$, de centro $a$, contém algum ponto $x \in X$ diferente de $a$.
+        %O conjunto dos pontos de acumulação de $X$ será representado pela notação $X'$ (e, às vezes,
+        %chamado o derivado de $X$).
+        %A condição $a \in X'$ ($a$ é ponto de acumulação de $X$) exprime-se simboliamente do modo seguinte: 
+        %$\forall\epsilon > 0 \exists x \in X 0 < absx - a < \epsilon$
+    %\end{definition}
+    %\begin{definition}{Ponto isolado}
+        %Um ponto $a \in X$ que não é ponto de acumulação de $X$ chama-se um ponto isolado de $X$.
+    %\end{definition}
+    %\begin{definition}{Ponto de acumulação à direita}
+        %Dizemos que $a$ é ponto de acumulação à direita do conjunto $X$ quando todo intervalo $[a, a+\epsilon)$,
+        %com $\epsilon > 0$, contém algum ponto de $X$ diferente de $a$.
+        %Equivalentemente, todo intervalo $[a, a+\epsilon)$ contém algum ponto de $X$ diferente de $a$, ou então 
+            %que $a$ é ponto de acumulação de $X \cap [a, +\infty)$.
+        %Outra afirmação equivalente a esta é dizer que $a$ é limite de uma sequência decrescente de pontos de $X$.
+        %Notação: ${X'}_+$
+    %\end{definition}
+%
+    %\newpage
+    %\begin{definition}{Cobertura}
+        %Uma cobertura de um conjunto $X \subset \mathbb{R}$ é uma família $C = \left( C_\lambda \right)_{\lambda \in L}$
+        %de conjuntos $C_\lambda \in \mathbb{R}$, tais que $X \subset \bigcup\limits_{\lambda \in L} C_\lambda$,
+        %isto é, para todo 
+    %\end{definition}
+
+    %----
+    %
+    %\begin{definition}{}
+    %\end{definition}
+\end{document}

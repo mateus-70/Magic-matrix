@@ -1,0 +1,14 @@
+\let\oldln\ln
+\renewcommand{\ln}[1]{ \oldln {(#1)}}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+
+%\let\oldint\int
+%\newcommand{\fint}[3][s][s]{ \int_{#1}^{#2}{\left(#3\right)}}
+
+%\newcommand{\dint}[4]{ \int_{#1}^{#2} {\left(#3\right)}\, \mathrm{d}#4}
+
+\newcommand{\paren}[1]{ \left( #1 \right)}
+\newcommand{\colch}[1]{ \left[ #1 \right]}
+\newcommand{\tr}[1]{\mathrm{tr} \left( #1 \right)}
+\let\olddet\det
+\renewcommand{\det}[1]{\olddet{ \left( #1 \right)} }

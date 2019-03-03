@@ -1,0 +1,24 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\input{../trig.tex}
+\input{../funcoes.tex}
+
+\begin{document}
+    $$ \int{u^n}{u} = \dfrac{u^{n+1}}{n+1} + c, n \neq -1$$ \\
+    $$ \int{\dfrac{1}{u}}{u} = \ln {\abs u} +c$$ \\
+    $$ \int{a^u}{u} = \dfrac{a^u}{\ln a} +c, 1 \neq a > 0$$ \\
+    $$ \int{\mathrm{e}^u}{u} = \mathrm{e}^u +c$$ \\
+    $$ \int{\sen u}{u} = -\cos u+c$$ \\
+    $$ \int{\sec u^2}{u} = \tg u + c$$ \\
+    $$ \int{\cossec u^2}{u}= -\cotg u +c$$ \\
+    $$ \int{\sec u}{u}= \ln { \abs{\sec u + \tg u } } +c$$ \\
+    $$ \int{\cossec u}{u}= \ln {\abs{\cossec u - \cotg u}} +c$$ \\
+    $$ \int{\dfrac{1}{u^2 + a^2}}{u} = \dfrac{1}{a} \arctg{\dfrac{u}{a}}+c$$ \\
+    %$$ \int = +c$$ \\
+\end{document}

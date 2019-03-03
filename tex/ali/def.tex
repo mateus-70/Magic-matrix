@@ -1,0 +1,94 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+\input{../funcoes.tex}
+\input{../trig.tex}
+
+    \theoremstyle{definition}
+    \newtheorem{definition}{Definição}
+    
+    \theoremstyle{remark}
+    \newtheorem*{remark}{Nota}
+
+\begin{document}
+    \theoremstyle{definition}
+    %Seja $m \in \mathbb{N}$ e seja $A$ uma matriz qualquer.
+    %\begin{definition}{Matriz quadrada}
+        %Toda matriz de ordem $m \times m$.
+    %\end{definition}
+    %\begin{definition}{Matriz coluna}
+        %Matriz de ordem $m \times 1$
+    %\end{definition}
+    %\begin{definition}{Matriz linha}
+        %Matriz de ordem $1 \times m$
+    %\end{definition}
+    %\begin{definition}{}
+        %
+    %\end{definition}
+    %\begin{definition}{}
+        %
+    %\end{definition}
+    %\begin{definition}{}
+        %
+    %\end{definition}
+    %\begin{definition}{}
+        %
+    %\end{definition}
+    %\begin{definition}{}
+        %
+    %\end{definition}
+    \begin{enumerate}
+        \item $A = B \implies A^T = B^T$
+        \item $\left( A^T \right)^T = A$
+        \item $(A + B)^T = A^T + B^T$
+        \item $(AB)^T = B^T A^T$
+        \item $(kA)^T = kA^T$, $k \in \mathbb{R}$
+    \end{enumerate}
+    \begin{definition}{Traço}
+        O traço de uma matriz quadrada $A$ é o somatório dos elementos da diagonal principal. Denota-se $\tr{A}$.
+    \end{definition}
+    Seja $k \in \mathbb{R}$.
+    \begin{enumerate}
+        \item $\tr{kA} = k\, \tr{A}$
+        \item $\tr{A+B} = \tr{A} + \tr{B}$
+        \item $\tr{AB} = \tr{BA}$
+        \item $\tr{AB} \neq \tr{A} \tr{B}$
+        \item $\tr{A^T} = \tr{A}$
+    \end{enumerate}
+    \begin{definition}{Matriz simétrica}
+        Uma matriz quadrada é simétrica se, e somente se $A = A^T$.
+    \end{definition}
+    \theoremstyle{remark}
+    \begin{remark}
+        O produto $AA^T$ é sempre uma matriz simétrica.
+    \end{remark}
+    \begin{definition}{Matriz antissimétrica}
+        Uma matriz é dita antissimétrica se, e somente se $A^T = -A$.
+    \end{definition}
+    \begin{remark}
+        $A$ é uma matriz antissimétrica se, e somente se os elementos posicionados simetricamente com relação à diagonal principal
+        são opostos, isto é, $a_{ij} = -a_{ji}$.
+    \end{remark}
+    \begin{definition}{Matriz ortogonal}
+        Uma matriz quadrada é dita ortogonal se, e somente se $A^T = A^{-1}$
+    \end{definition}
+    \begin{remark}
+        Na matriz ortogonal ocorre: $AA^{-1} = I \implies AA^T = I$.
+    \end{remark}
+    Propriedades dos determinantes:
+    \begin{enumerate}
+        \item $\det A = \det{A^T}$.
+        \item $\det{AB} = \det A \det B$.
+        \item $\det{A+B} \neq \det A + \det B$.
+        \item Se a matriz $A$ possui uma linha ou coluna nulos então $\det A = 0$.
+        \item $\det{kA} = k^n \det A$.
+        \item Se A é inversível então $\det A = \dfrac{1}{\det {A^{-1}} }$.
+        \item Se $A$ é uma matriz ortogonal ocorre $\det A = \pm 1$.
+        \item Se $A$ é uma matriz triangular, então $\det A = a_{11} \cdot a_{22} \cdot a_{33} \hdots a_{nn}$.
+    \end{enumerate}
+\end{document}

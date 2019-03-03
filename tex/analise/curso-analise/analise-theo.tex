@@ -1,0 +1,117 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\input{/home/mateus/ban/funcoes.tex}
+%\input{/home/mateus/ban/trig.tex}
+
+% plain definition remark em theoremstyle
+    \theoremstyle{remark}
+    \newtheorem*{remark}{Nota}
+
+    \theoremstyle{plain}
+    \newtheorem{theorem}{Teorema}
+
+    \theoremstyle{plain}
+    \newtheorem{corolary}{Corolário}
+
+    \theoremstyle{plain}
+    \newtheorem{lemma}{Lema}
+\begin{document}
+    \begin{theorem}
+        \begin{enumerate}
+        \item Se $\mathrm{A_1 \subset \mathbb{R} }$ e $ \mathrm{ A_2 \subset \mathbb{R} }$ são abertos, então $\mathrm{ A_1 \cup A_2 }$ é aberto.
+        \item Seja $\mathrm{ \left( A_\lambda \right)_{\lambda \in L} }$ 
+            uma família arbitrária de conjuntos abertos $\mathrm{ A_\lambda \subset \mathbb{R} }$.
+            A reunião $\mathrm{ A = \bigcup\limits_{\lambda \in L} A_\lambda }$
+        \end{enumerate}
+    \end{theorem}
+    \begin{corolary}
+        A interseção finita de conjuntos abertos é um conjunto aberto.
+    \end{corolary}
+    \begin{theorem}[Estrutura dos abertos da reta]
+        Todo subconjunto aberto $\mathrm{A \subset \mathbb{R} }$ se exprime, de modo único, 
+        como uma reunião enumerável de intervalos abertos, dois a dois disjuntos. 
+        \begin{lemma}
+            Seja $\mathrm{ \left( I_\lambda \right)_{\lambda \in L} }$ uma família de intervalos abertos, 
+            todos contendo o ponto $\mathrm{p \in \mathbb{R} }$. 
+            Então $\mathrm{I = \bigcup\limits_{\lambda \in L} I_\lambda }$ é um intervalo aberto.
+        \end{lemma}
+    \end{theorem}
+    \begin{corolary}
+        Seja $\mathrm I$ um intervalo aberto. $\mathrm{ I = A \cup B }$, 
+        onde $\mathrm A$ e $\mathrm B$ são conjuntos abertos disjuntos, então um desses conjuntos é igual a $\mathrm I$ e o outro é vazio.
+    \end{corolary}
+    \begin{theorem}
+        Um ponto $a \in \mathbb{R}$ é aderente a um conjunto $X \subset \mathbb{R}$ se, e somente se, 
+        para todo $\epsilon > 0 $ tem-se $X \cap ( a-\epsilon, a+ \epsilon ) \neq \not 0$.
+    \end{theorem}
+    \begin{corolary}
+        Sejam $X \in \mathbb{R}$ limitado inferiormente e $Y \in \mathbb{R}$ limitado superiormente. 
+        Então $a = inf X$ é aderente a $X$ e $b = sup Y$ é aderente a $Y$.
+    \end{corolary}
+    \begin{theorem}
+        Um conjunto $F \in \mathbb{R}$ é fechado se, e somente se, seu complementar $R-F$ é aberto.
+    \end{theorem}
+    \begin{corolary}
+        \begin{itemize}
+            \item $\mathbb{R}$ é o conjunto vazio são fechados.
+            \item Se $F_1, F_2, \dots, F_n$ são fechados, então $F_1 \cup F_2 \cup \dots \cup F_n$ é fechado.
+            \item Se $ \left( F_\lambda \right)_{\lambda \in L}$ é uma família quaquer de conjuntos fechados então a interseção
+                $F = \bigcap\limits_{\lambda \in L} F_\lambda$ é um conjunto fechado.
+        \end{itemize}
+    \end{corolary}
+    \begin{theorem}
+        O fecho de todo conjunto $X \in \mathbb{R}$ é um conjunto fechado, isto é, pg 172.
+    \end{theorem}
+    \begin{theorem}
+        Todo conjunto $X$ de números reais contém um subconjunto enumerável $E$, denso em $X$.
+    \end{theorem}
+    \begin{theorem}
+        Dados $X \subset \mathbb{R}$ e $a \in \mathbb{R}$, as seguintes afirmações são equivalentes:
+        \begin{itemize}
+            \item $a \in X'$;
+            \item $a = lim x_n$, onde $(x_n)$ é uma sequência de elementos de $X$, dois a dois distintos;
+            \item todo intervalo aberto contendo $a$ possui uma infinidade de elementos de $X$.
+        \end{itemize}
+    \end{theorem}
+    \begin{corolary}
+        Se $X' \neq vazio, pg 176$ então $X$ é infinito.
+    \end{corolary}
+    \begin{theorem}
+        Para todo $X \subset \mathbb{R}$, tem-se pg 177, teo 8. 
+        Ou seja, o fecho de um conjunto $X$ é obtido acrescentando-se a $X$ os seus pontos de acumulação.
+    \end{theorem}
+    \begin{corolary}
+        X é fechado se, e somente se, $X' \in X$.
+    \end{corolary}
+    \begin{corolary}
+        Se todos os pontos do conjunto $X$ são isolados então $X$ é enumerável.
+    \end{corolary}
+    \begin{theorem}
+        Seja $F \subset \mathbb{R}$ não-vazio tal que $F = F'$. (Isto é, $F$ é um conjunto fechado não-vazio
+        sem pontos isolados.) Então $F$ é não enumerável.
+    \end{theorem}
+    \begin{lemma}
+        Seja $F$ fechado, não-vazio, sem pontos isolados. para todo $x \in \mathbb{R}$ 
+        existe $F_x$ limitado, fechado, não-vazio, sem pontos isolados, tal que $x \not\in F_x \subset F$.
+    \end{lemma}
+    \begin{corolary}[Equivalente ao teorema]
+        Todo conjunto fechado enumerável não-vazio possui algum ponto isolado.
+    \end{corolary}
+    \begin{corolary}
+        O conjunto de Cantor é não-enumerável.
+    \end{corolary}
+
+    ----
+    \begin{corolary}
+    \end{corolary}
+    
+    \begin{theorem}
+    \end{theorem}
+    
+\end{document}

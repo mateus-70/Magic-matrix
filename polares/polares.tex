@@ -1,0 +1,64 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{enumerate}
+
+\input{/home/mateus/ban/funcoes.tex}
+\input{/home/mateus/ban/trig.tex}
+
+\begin{document}
+    %$r = \mathrm{d}(O,P)$
+    %$\theta = \mathrm{ang}(
+    Em termos analíticos $r \ge 0$.
+    Curvas típicas polares \\
+
+       Círculo raio $a$: $r = a$ \\
+       $$
+            r = a \cdot \cos \theta \, \mathrm{ou} \, r = a \cdot \sen \theta
+       $$
+       
+       
+       Rosáceas: 
+       \begin{equation*}
+           r = a \cdot \cos {n \theta}\, \mathrm{ ou} \,
+           r = a \cdot \sen {n \theta}
+       \end{equation*}
+       Obs.: Se $n$ é par, a rosácea é desenhada em $ [ 0, 2 \pi ]$
+             Se $n$ é ímpar, a rosácea é desenhada em $ [ 0, \pi ]$
+       
+       
+       Cardióide: 
+       \begin{equation*}
+            r = a + a \cdot \cos {\theta}\, \mathrm{ou}\, r = a + a \cdot \sen \theta
+       \end{equation*}
+
+       
+       Lemniscata: 
+       \begin{equation*}
+           r^2 = a^2 \cdot \sen {2\theta} \implies \abs{r} = a \sqrt{ \sen{2\theta} } \, \mathrm{ou} \, r^2 = a^2 \cdot \cos{2\theta} \implies \abs{r} = a \sqrt{ \cos{2\theta} } \\
+       \end{equation*}
+       Obs.: Cuidado com o domínio: 
+       \begin{align*}
+            & \abs{r} = a \sqrt{ \sen {2 \theta} } \\
+            & \iff \sen {2 \theta} \ge 0  \\
+            & \iff 2 \theta \in [0, \pi] \\
+            & \iff \theta \in [0, \frac{\pi}{2} ] \\
+       \end{align*}
+       
+       
+       Limaçons: \\
+       $$
+        r = a + b \cdot \sen{\theta} \, \mathrm{ou} \,
+        r = a + b \cdot \cos{\theta} 
+        $$
+       Obs.:
+       \begin{enumerate}[i]
+           \item Se $\abs{a} = \abs{b}$ temos o cardióide
+           \item Se $\abs{a} < \abs{b}$ limaçon com laço
+           \item Se $\abs{a} > \abs{b}$ limaçon sem laço
+       \end{enumerate}
+\end{document}
