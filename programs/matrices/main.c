@@ -1,6 +1,6 @@
 // Mateus S Silva
-// 2018-09-21
-// 2018-09-30 - v1 funcional, para numeros inteiros
+//
+//
 // O objetivo desse programa é receber duas matrizes e fazer sua multiplicação: o produto usual de matrizes.
 //
 //
@@ -23,7 +23,7 @@
 #define MAX_LINHAS_matriz 10
 #define MAX_COLUNAS_matriz 10
 
-
+// Structs declaration - Start
 struct Q {
     int numerador, denominador;
 };
@@ -35,19 +35,22 @@ struct MATRIZ {
     struct Q matriz[MAX_LINHAS_matriz][MAX_COLUNAS_matriz];
 };
 
+// Structs declaration - End
 
-// funcoes de back-end
-int find_mat(); // acha uma matriz pelo nome
-int edit_mat(); // edita nome e entradas de uma matriz
-int dump_mat(); // despeja informacoes de uma matriz na saída
+
+// Back-end functions declarations - Start
+int find_mat(); // search for a matrix by name
+int edit_mat(); // edit the entrances of a matrix
+int dump_mat(); // dumb matrix info at exit // what does this really mean?
 struct Q mult_q();
 struct Q quoc_q();
 struct Q soma_q();
 struct Q simplificar_q();
 struct MATRIZ escal_mat();
 int somar_linha(); 
+// Back-end functions declarations - End
 
-// funcoes de front-end
+// Front-end functions declaratins - Start
 int listar_matrizes();
 int mostrar_matriz();
 int inserir_matriz();
@@ -56,15 +59,16 @@ int deletar_matriz();
 int obter_transposta();
 int calcular_produto();
 int escalonar_matriz();
+// Front-end functions declaratins - End
 
-// variaveis globais
+// Global vars declaration - Start
 int num_matrizes=0;
 struct MATRIZ matrizes[MAX_MATRIZES];
-
-// ******** inicio dos corpos de funcoes ***********
-
+// Global vars declaration - End
 
 
+
+// ************************ Functions definitions *************************
 
 struct Q simplificar_q(struct Q racional){
     int i, menor;
@@ -89,7 +93,7 @@ struct Q simplificar_q(struct Q racional){
         // É provavel que o menor tenha menos divisores, por isso usamos o menor deles.
         // sqrt(menor + 1) porque não quero enfrentar problemas com arredondamentos com float.
         // começa por 2, porque numero racional com numerador =1 não é simplificável.
-        menor = sqrt(menor+1.);
+         menor = round(sqrt(menor+1.));
         for(i=2; i < menor; ){
             if( racional.numerador % i == 0){
                 if( racional.denominador % i == 0){
@@ -623,6 +627,7 @@ int escalonar_matriz(){
 int main(){
     // Variaveis
     int cont_acao=0;
+    printf("Nice");
     char acao, acao_valida; //acao=inserir (I), mostrar (M)...  acao_valida: s/n
 
     //char str_racional1[STR_MAIOR_NUMERO], str_racional2[STR_MAIOR_NUMERO];
