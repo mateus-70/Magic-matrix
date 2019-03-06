@@ -1,15 +1,5 @@
-// Mateus S Silva
-//
-//
-// O objetivo desse programa é receber duas matrizes e fazer sua multiplicação: o produto usual de matrizes.
-//
-//
-//
-// Falta nao deixar inserir nome nao unico para matriz.
-// 
-// O produto e a soma em Q já estão funcionando corretamente.
-// Deve-se então adequar as operacoes nas matrizes para suportar isso também.
-// A funcao de inserir está com algum defeito na hora de chamar 'edit_mat()'
+#ifndef HEADER_MATRICES__
+    #define HEADER_MATRICES__
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -17,168 +7,23 @@
 #include <ctype.h>
 #include <math.h>
 
-#define MAX_MATRIZES 10
-#define MAIOR_NOME 10
-#define STR_MAIOR_NUMERO 20
-#define MAX_LINHAS_matriz 10
-#define MAX_COLUNAS_matriz 10
 
-// Structs declaration - Start
-struct Q {
-    int numerador, denominador;
-};
-
-struct MATRIZ {
-    char nome[MAIOR_NOME];
-    int linhas;
-    int colunas;
-    struct Q matriz[MAX_LINHAS_matriz][MAX_COLUNAS_matriz];
-};
-
-// Structs declaration - End
-
-
-// Back-end functions declarations - Start
-int find_mat(); // search for a matrix by name
-int edit_mat(); // edit the entrances of a matrix
-int dump_mat(); // dumb matrix info at exit // what does this really mean?
-struct Q mult_q();
-struct Q quoc_q();
-struct Q soma_q();
-struct Q simplificar_q();
-struct MATRIZ escal_mat();
-int somar_linha(); 
-// Back-end functions declarations - End
-
-// Front-end functions declaratins - Start
-int listar_matrizes();
-int mostrar_matriz();
-int inserir_matriz();
-int editar_matriz();
-int deletar_matriz();
-int obter_transposta();
-int calcular_produto();
-int escalonar_matriz();
-// Front-end functions declaratins - End
-
-// Global vars declaration - Start
-int num_matrizes=0;
-struct MATRIZ matrizes[MAX_MATRIZES];
-// Global vars declaration - End
-
+#include "/home/mateus/ban/math/programs/utils/definitions.h"
 
 
 // ************************ Functions definitions *************************
+//
 
-struct Q simplificar_q(struct Q racional){
-    int i, menor;
-
-    if (racional.denominador == 0){
-        puts("\n\n\nsimplifica_q: DIVISAO POR ZERO\n\n\n\n");
-        exit(1);
-    }
-    if(racional.numerador == 0){
-        racional.denominador = 1;
-    }else{
-        if(racional.denominador < 0){
-            racional.denominador *= -1;
-            racional.numerador *= -1;
-        }
-    
-        if(racional.numerador < racional.denominador)
-            menor = racional.numerador;
-        else
-            menor = racional.denominador;
-        
-        // É provavel que o menor tenha menos divisores, por isso usamos o menor deles.
-        // sqrt(menor + 1) porque não quero enfrentar problemas com arredondamentos com float.
-        // começa por 2, porque numero racional com numerador =1 não é simplificável.
-         menor = round(sqrt(menor+1.));
-        for(i=2; i < menor; ){
-            if( racional.numerador % i == 0){
-                if( racional.denominador % i == 0){
-                    racional.numerador /= i;
-                    racional.denominador /= i;
-                }else{
-                    i++;
-                }
-            }else{
-                i++;
-            }
-        }
-    }
-
-    return racional;
-}
-
-// multiplicacao em Q - racionais
-struct Q quoc_q(struct Q rac1, struct Q rac2){
-    struct Q resultado;
-    
-    if(rac2.numerador == 0 || rac2.denominador == 0){
-        printf("\n\nDivisão por zero.\n\n");
-        exit(0);
-    }
-
-    resultado.numerador = rac1.numerador * rac2.denominador;
-    resultado.denominador = rac1.denominador * rac2.numerador;
-    return resultado;
-}
-
-// multiplicacao em Q - racionais
-struct Q mult_q(struct Q rac1, struct Q rac2){
-    struct Q resultado;
-    resultado.numerador = rac1.numerador * rac2.numerador;
-    resultado.denominador = rac1.denominador * rac2.denominador;
-    return resultado;
-}
-
-// soma em Q
-struct Q soma_q(const struct Q rac1, const struct Q rac2){
-    struct Q resultado;
-    resultado.denominador = rac1.denominador * rac2.denominador;
-    resultado.numerador = rac1.numerador*rac2.denominador + rac2.numerador*rac1.denominador;
-    return resultado;
-}
-
-// Nao deve ser usado para imprimir matrizes, mas ficará aqui para testes e dev.
-int print_q(const struct Q racional){
-    printf("%2d/%2d", racional.numerador, racional.denominador);
-    return 0;
-}
-
-int str_to_q(const char * str_racional, struct Q *num_racional){
-    int numerador, denominador;
-    char tmp_str_racional[STR_MAIOR_NUMERO], *ch;
-
-    //puts(str_racional);
-
-    ch = tmp_str_racional;
-    strcpy(tmp_str_racional, str_racional);
-
-    ch = strtok(ch, "/");
-    numerador = atoi(ch);
-    ch = strtok(NULL, "/");
-    if(ch != NULL)
-        denominador = atoi(ch);
-    else
-        denominador = 1;
-
-    num_racional->numerador = numerador;
-    num_racional->denominador = denominador;
-    // printf("Numerador %d\nDenominador%d\n",numerador,denominador);
-    return 0;
-}
 
 // funcao de front-end
 int listar_matrizes(){
     int i;
     if(num_matrizes == 0){
-        puts("Não há matrizes no programa.");
+        puts("There is no matrices in the program.");
     }else{
-        puts("As matrizes em \'matrizes[]\' sao: ");
+        puts("The matrices in \'matrizes[]\' are: ");
         for(i=0; i < num_matrizes; i++){
-            printf("Matriz %d: %s\n", i+1, matrizes[i].nome);
+            printf("Matrix %d: %s\n", i+1, matrizes[i].nome);
         }
     }
     printf("\n\n");
@@ -624,116 +469,4 @@ int escalonar_matriz(){
     return 0;
 }
 
-int main(){
-    // Variaveis
-    int cont_acao=0;
-    printf("Nice");
-    char acao, acao_valida; //acao=inserir (I), mostrar (M)...  acao_valida: s/n
-
-    //char str_racional1[STR_MAIOR_NUMERO], str_racional2[STR_MAIOR_NUMERO];
-    struct Q A, B;
-
-    system("clear");
-
-    A.numerador = 5;
-    A.denominador= 3;
-    B.numerador = 13;
-    B.denominador= 2;
-
-    A = quoc_q(A, B);
-
-    printf("A: NUMERADOR: %d\n Denom: %d\n\n",A.numerador, A.denominador);
-    printf(" ***** PROGRAMA PARA MULTIPLICAR MATRIZES *****\n\n");
-    // menu
-    do{
-        do{
-            cont_acao++;
-            //depuracao only
-            // printf("Acao n: %d\n", cont_acao);
-            puts("Inserir  |  Listar  |  Mostrar  |  Editar  |  Deletar ");
-            puts("Produto  |  Soma  | Transposta |  esCalonada  | (Q, +, *) |  Quit");
-            printf("Acao: ");
-            scanf(" %c", &acao);
-            switch (acao){
-                case 'I': case 'i': 
-                case 'L': case 'l':
-                case 'M': case 'm':
-                case 'E': case 'e':
-                case 'D': case 'd':
-                case 'P': case 'p':
-                case 'S': case 's':
-                case 'T': case 't':
-                case 'C': case 'c':
-                case 'Q': case 'q': 
-                    acao_valida = 's'; break;
-            default: acao_valida = 'n';
-            }
-        }while(acao_valida != 's');
-        switch (acao){
-            case 'I': 
-            case 'i': 
-                if(num_matrizes < MAX_MATRIZES){
-                    // Se i.g. num_matrizes=2, ela vai inserir a prox matriz em matrizes[2],
-                    //  que é a terceira entrada do array >matrizes<
-                    inserir_matriz(); 
-                    num_matrizes++;
-                }
-                break;
-            case 'L': 
-            case 'l': 
-                listar_matrizes();
-                break;
-            case 'M': 
-            case 'm': 
-                mostrar_matriz(num_matrizes);
-                break;
-            case 'E': 
-            case 'e': 
-                editar_matriz(matrizes);
-                break;
-            case 'D': 
-            case 'd': 
-                deletar_matriz();
-                break;
-            case 'P': 
-            case 'p': 
-                calcular_produto();
-                break;
-            case 'S': 
-            case 's': 
-                calcular_soma();
-                break;
-            case 'C': 
-            case 'c': 
-                escalonar_matriz();
-                break;
-            case 'T': 
-            case 't': 
-                obter_transposta();
-                break;
-            /*case 'q': 
-            case 'Q': 
-                printf("1 num racional: ");
-                scanf(" %s", str_racional1);
-                printf("2 num racional: ");
-                scanf(" %s", str_racional2);
-
-                str_to_q(str_racional1, &num_racional1);
-                str_to_q(str_racional2, &num_racional2);
-                
-                resultado = soma_q(num_racional1, num_racional2);
-                printf("------->SOMA = %2d/%d\n", resultado.numerador, resultado.denominador);
-                mult_q(num_racional1, num_racional2, &resultado);
-                printf("------->PRODUTO = %2d/%d\n", resultado.numerador, resultado.denominador);
-
-
-                break;*/
-            case 'Q': 
-            case 'q': 
-                puts("\n\nQuitting!\n\n");
-                break;
-        }
-    }while(toupper(acao) != 'Q');
-
-    return 0;
-}
+#endif
