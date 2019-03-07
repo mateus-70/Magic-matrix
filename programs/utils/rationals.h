@@ -12,32 +12,32 @@
 struct Q simplificar_q(struct Q racional){
     int i, menor;
 
-    if (racional.denominador == 0){
+    if (racional.denominator == 0){
         puts("\n\n\nsimplifica_q: DIVISAO POR ZERO\n\n\n\n");
         exit(1);
     }
-    if(racional.numerador == 0){
-        racional.denominador = 1;
+    if(racional.numerator == 0){
+        racional.denominator = 1;
     }else{
-        if(racional.denominador < 0){
-            racional.denominador *= -1;
-            racional.numerador *= -1;
+        if(racional.denominator < 0){
+            racional.denominator *= -1;
+            racional.numerator *= -1;
         }
     
-        if(racional.numerador < racional.denominador)
-            menor = racional.numerador;
+        if(racional.numerator < racional.denominator)
+            menor = racional.numerator;
         else
-            menor = racional.denominador;
+            menor = racional.denominator;
         
         // É provavel que o menor tenha menos divisores, por isso usamos o menor deles.
         // sqrt(menor + 1) porque não quero enfrentar problemas com arredondamentos com float.
-        // começa por 2, porque numero racional com numerador =1 não é simplificável.
+        // começa por 2, porque numero racional com numerator =1 não é simplificável.
          menor = round(sqrt(menor+1.));
         for(i=2; i < menor; ){
-            if( racional.numerador % i == 0){
-                if( racional.denominador % i == 0){
-                    racional.numerador /= i;
-                    racional.denominador /= i;
+            if( racional.numerator % i == 0){
+                if( racional.denominator % i == 0){
+                    racional.numerator /= i;
+                    racional.denominator /= i;
                 }else{
                     i++;
                 }
@@ -54,40 +54,40 @@ struct Q simplificar_q(struct Q racional){
 struct Q quoc_q(struct Q rac1, struct Q rac2){
     struct Q resultado;
     
-    if(rac2.numerador == 0 || rac2.denominador == 0){
+    if(rac2.numerator == 0 || rac2.denominator == 0){
         printf("\n\nDivisão por zero.\n\n");
         exit(0);
     }
 
-    resultado.numerador = rac1.numerador * rac2.denominador;
-    resultado.denominador = rac1.denominador * rac2.numerador;
+    resultado.numerator = rac1.numerator * rac2.denominator;
+    resultado.denominator = rac1.denominator * rac2.numerator;
     return resultado;
 }
 
 // multiplicacao em Q - racionais
 struct Q mult_q(struct Q rac1, struct Q rac2){
     struct Q resultado;
-    resultado.numerador = rac1.numerador * rac2.numerador;
-    resultado.denominador = rac1.denominador * rac2.denominador;
+    resultado.numerator = rac1.numerator * rac2.numerator;
+    resultado.denominator = rac1.denominator * rac2.denominator;
     return resultado;
 }
 
 // soma em Q
 struct Q soma_q(const struct Q rac1, const struct Q rac2){
     struct Q resultado;
-    resultado.denominador = rac1.denominador * rac2.denominador;
-    resultado.numerador = rac1.numerador*rac2.denominador + rac2.numerador*rac1.denominador;
+    resultado.denominator = rac1.denominator * rac2.denominator;
+    resultado.numerator = rac1.numerator*rac2.denominator + rac2.numerator*rac1.denominator;
     return resultado;
 }
 
 // Nao deve ser usado para imprimir matrizes, mas ficará aqui para testes e dev.
 int print_q(const struct Q racional){
-    printf("%2d/%2d", racional.numerador, racional.denominador);
+    printf("%2d/%2d", racional.numerator, racional.denominator);
     return 0;
 }
 
 int str_to_q(const char * str_racional, struct Q *num_racional){
-    int numerador, denominador;
+    int numerator, denominator;
     char tmp_str_racional[STR_MAIOR_NUMERO], *ch;
 
     //puts(str_racional);
@@ -96,16 +96,16 @@ int str_to_q(const char * str_racional, struct Q *num_racional){
     strcpy(tmp_str_racional, str_racional);
 
     ch = strtok(ch, "/");
-    numerador = atoi(ch);
+    numerator = atoi(ch);
     ch = strtok(NULL, "/");
     if(ch != NULL)
-        denominador = atoi(ch);
+        denominator = atoi(ch);
     else
-        denominador = 1;
+        denominator = 1;
 
-    num_racional->numerador = numerador;
-    num_racional->denominador = denominador;
-    // printf("Numerador %d\nDenominador%d\n",numerador,denominador);
+    num_racional->numerator = numerator;
+    num_racional->denominator = denominator;
+    // printf("Numerador %d\nDenominador%d\n",numerator,denominator);
     return 0;
 }
 

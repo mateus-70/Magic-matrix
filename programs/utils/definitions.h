@@ -11,7 +11,7 @@
 #define FALSE 0
 #define TRUE 1
 
-#define MAX_MATRIZES 10
+#define MAX_MATRICES 10
 #define MAIOR_NOME 10
 #define STR_MAIOR_NUMERO 20
 #define MAX_LINHAS_matriz 10
@@ -19,10 +19,10 @@
 
 // Structs declaration - Start
 struct Q {
-    int numerador, denominador;
+    int numerator, denominator;
 };
 
-struct MATRIZ {
+struct MATRIX {
     char nome[MAIOR_NOME];
     int linhas;
     int colunas;
@@ -31,8 +31,8 @@ struct MATRIZ {
 // Structs declaration - End
 
 // Global vars declaration - Start
-int num_matrizes=0;
-struct MATRIZ matrizes[MAX_MATRIZES];
+int matrices_qt=0;
+struct MATRIX matrizes[MAX_MATRICES];
 // Global vars declaration - End
 
 // Functions declaration - Start
@@ -40,7 +40,7 @@ struct Q mult_q(struct Q, struct Q);
 struct Q quoc_q(struct Q, struct Q);
 struct Q soma_q(struct Q, struct Q);
 struct Q simplificar_q(struct Q);
-// struct MATRIZ escal_mat(); what the heck is this?
+// struct MATRIX escal_mat(); what the heck is this?
 // Functions declaration - End
 
 

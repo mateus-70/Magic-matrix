@@ -1,9 +1,4 @@
-// Mateus S Silva
-//
-//
 // O objetivo desse programa é receber duas matrizes e fazer sua multiplicação: o produto usual de matrizes.
-//
-//
 //
 // Falta nao deixar inserir nome nao unico para matriz.
 // 
