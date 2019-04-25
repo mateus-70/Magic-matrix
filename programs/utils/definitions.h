@@ -12,55 +12,79 @@
 #define TRUE 1
 
 #define MAX_MATRICES 10
-#define MAIOR_NOME 10
-#define STR_MAIOR_NUMERO 20
-#define MAX_LINHAS_matriz 10
-#define MAX_COLUNAS_matriz 10
+#define MAX_NAME 10
+#define STR_MAX_NUMBER 20
+#define STR_MAX_MATRIX 20
+#define MAX_MATRIX_ROWS 10
+#define MAX_MATRIX_COLS 10
+
+#define VARIABLE_MAX_NAME 30
+#define MAX_DATA_TYPE 30
+#define MAX_VARIABLES 100
+#define MAX_ASSIGNMENTS 5
 
 // Structs declaration - Start
-struct Q {
+typedef struct {
     int numerator, denominator;
-};
+} Q;
+
 
 struct MATRIX {
-    char nome[MAIOR_NOME];
-    int linhas;
-    int colunas;
-    struct Q matriz[MAX_LINHAS_matriz][MAX_COLUNAS_matriz];
+    // char name[MAX_NAME];
+    int rows;
+    int columns;
+    Q matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
 };
+
+
+typedef struct 
+{
+    char name[VARIABLE_MAX_NAME];
+    void *pt;
+    char data_type[MAX_DATA_TYPE];
+} var;
 // Structs declaration - End
 
 // Global vars declaration - Start
-int matrices_qt=0;
-struct MATRIX matrizes[MAX_MATRICES];
+extern var variable[MAX_VARIABLES];
+extern int matrices_qt; // quantity
+struct MATRIX matrices[MAX_MATRICES];
 // Global vars declaration - End
 
 // Functions declaration - Start
-struct Q mult_q(struct Q, struct Q);
-struct Q quoc_q(struct Q, struct Q);
-struct Q soma_q(struct Q, struct Q);
-struct Q simplificar_q(struct Q);
+Q q_mult(Q, Q);
+Q q_quoc(Q, Q);
+Q q_add( Q, Q);
+Q q_simplify(Q);
 // struct MATRIX escal_mat(); what the heck is this?
 // Functions declaration - End
 
 
 // Back-end functions declarations - Start
-int find_mat(); // search for a matrix by name
-int edit_mat(); // edit the entrances of a matrix
+int find_matrix(); // search for a matrix by name
+int edit_matrix(); // edit the entrances of a matrix
 int dump_mat(); // dumb matrix info at exit // what does this really mean?
-int somar_linha(); 
+int add_line(); 
+int is_natural();
+int is_integer();
+int is_rational();
+int is_real();
+int is_matrix();
+char is_validexp();
+int is_varname();
+int equation_handler();
 // Back-end functions declarations - End
 
 // Front-end functions declaratins - Start
-int listar_matrizes();
-int mostrar_matriz();
-int inserir_matriz();
-int editar_matriz();
-int deletar_matriz();
-int obter_transposta();
-int calcular_produto();
-int escalonar_matriz();
+int matrices_list();
+int show_matrix();
+int matrix_insert();
+int edit_matrix();
+int delete_matrix();
+int transpose_matrix();
+int matrix_product();
+int echelon_matrix();
 // Front-end functions declaratins - End
 
-int str_to_q(const char *, struct Q *);
+int str_to_q(const char *, Q *);
 #endif
