@@ -18,16 +18,16 @@ double matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS] = { 0 };
 // funcao de front-end
 int matrices_list(){
     int k, j, i;
-    for(k=0; i<var_qt && variable[k].data_type != 'M'; i++)
+    for(k=0; i<var_qt && variables[k].data_type != 'M'; i++)
         ;
     if(k == var_qt)
     {
-        if(variable[i].data_type == 'M')
-            printf("Only the matrix \n%s\n", variable[i].name);
-        for(i=0; i< variable[i].pt->rows)
+        if(variables[i].data_type == 'M')
+            printf("Only the matrix \n%s\n", variables[i].name);
+        for(i=0; i< variables[i].pt->rows)
         {
-            for(j=0; j< variable[i].pt->columns)
-                printf("%lf ",variable[i].pt[i][j])
+            for(j=0; j< variables[i].pt->columns)
+                printf("%lf ",variables[i].pt[i][j])
             printf("\n");
         }
     }

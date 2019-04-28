@@ -15,6 +15,8 @@
 
 // struct func functions[10] ;
 
+int var_qt=0;
+
 
 int main(){
     char command[COMMAND_LENGTH]; 

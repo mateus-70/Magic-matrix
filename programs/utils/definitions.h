@@ -28,6 +28,8 @@ typedef struct {
     int numerator, denominator;
 } Q;
 
+typedef long double Real;
+typedef unsigned int Natural;
 
 struct MATRIX {
     // char name[MAX_NAME];
@@ -40,13 +42,20 @@ struct MATRIX {
 typedef struct 
 {
     char name[VARIABLE_MAX_NAME];
-    void *pt;
+    //void *pt;
+    union 
+    {
+        Natural n;
+        int z;
+        Q q;
+        Real r;
+    }
     char data_type[MAX_DATA_TYPE];
 } var;
 // Structs declaration - End
 
 // Global vars declaration - Start
-extern var variable[MAX_VARIABLES];
+extern var variables[MAX_VARIABLES];
 extern int matrices_qt; // quantity
 struct MATRIX matrices[MAX_MATRICES];
 // Global vars declaration - End
@@ -87,4 +96,6 @@ int echelon_matrix();
 // Front-end functions declaratins - End
 
 int str_to_q(const char *, Q *);
+
+int var_qt;
 #endif
