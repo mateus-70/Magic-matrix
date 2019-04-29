@@ -16,48 +16,55 @@
 #define STR_MAX_NUMBER 20
 #define STR_MAX_MATRIX 20
 #define MAX_MATRIX_ROWS 10
-#define MAX_MATRIX_COLS 10
+#define MAX_MATRIX_COWS 10
 
 #define VARIABLE_MAX_NAME 30
 #define MAX_DATA_TYPE 30
 #define MAX_VARIABLES 100
 #define MAX_ASSIGNMENTS 5
 
+#define MATRIX_TYPE "M"
+#define NATURAL_TYPE "N"
+#define INTEGER_TYPE "Z"
+#define RATIONAL_TYPE "Q"
+#define REAL_TYPE "R"
+
+typedef long double Real;
+typedef unsigned int Natural;
+
 // Structs declaration - Start
 typedef struct {
     int numerator, denominator;
 } Q;
 
-typedef long double Real;
-typedef unsigned int Natural;
-
-struct MATRIX {
-    // char name[MAX_NAME];
-    int rows;
-    int columns;
-    Q matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
-};
+//struct MATRIX {
+//    // char name[MAX_NAME];
+//    int rows;
+//    int columns;
+//    Q matrix[MAX_MATRIX_ROWS][MAX_MATRIX_COLS];
+//};
 
 
 typedef struct 
 {
     char name[VARIABLE_MAX_NAME];
-    //void *pt;
+    char data_type[MAX_DATA_TYPE];
     union 
     {
         Natural n;
         int z;
         Q q;
         Real r;
-    }
-    char data_type[MAX_DATA_TYPE];
+        Real M[MAX_MATRIX_ROWS][MAX_MATRIX_COWS];
+    } value;
+    // --void *pt;
 } var;
 // Structs declaration - End
 
 // Global vars declaration - Start
 extern var variables[MAX_VARIABLES];
-extern int matrices_qt; // quantity
-struct MATRIX matrices[MAX_MATRICES];
+// --extern int matrices_qt; // quantity
+// --struct MATRIX matrices[MAX_MATRICES];
 // Global vars declaration - End
 
 // Functions declaration - Start

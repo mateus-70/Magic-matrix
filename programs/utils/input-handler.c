@@ -2,16 +2,8 @@
 #include <regex.h>
 
 
-var variables[MAX_VARIABLES] = 
-{
-    "", NULL, ""
-};
-
-
-const var reset_var = 
-{
-    "", NULL, ""
-};
+var variables[MAX_VARIABLES] = {};
+const var reset_var = {};
 
 // It will handle inputs like
 // a=1
@@ -19,52 +11,52 @@ const var reset_var =
 // A=[3 2; 3 45]
 // ofcourse functions
 // var=exp or var1=var2=exp
-int equation_handler(const char *command_)
-{
-    char command[COMMAND_LENGTH];
-    int command_length, i,j;
-
-    // c_e[0] == *"VAR1_NAME", c_e[...] == *"VAR..._NAME", c_e[n] == *Expression
-    char* pt_tok[MAX_ASSIGNMENTS] = { NULL }; // exploded in '='
-
-    strcpy(command, command_);
-
-    i=0;
-    pt_tok[i++]=strtok(command, "=");
-    for(; NULL != ( pt_tok[i]=strtok(NULL, "=") ); i++)
-        ;
-
-    for(j=0; j<i; j++)
-        printf("String[%d]: %s\n",j ,pt_tok[j]);
-
-    char type_exp;
-    int valid_vars_name=1;
-    if(type_exp = is_validexp(pt_tok[i]))
-    {
-        for(j=0; j<i-1;j++)
-        {
-            if(!is_varname(pt_tok[j]))
-                valid_vars_name=0;
-        }
-    }
-    else valid_vars_name=0;
-        
-    if(valid_vars_name)
-    {
-        // Store accordling to its type
-        if(type_exp == 'N')
-    }
-
-
-    // var = exp
-    // checkout to see if exp is valid
-    // checkout to see if var has valid name
-    //
-    // check if var is still undeclared, then declare
-    // assign value
-
-    return 0;
-}
+ //int equation_handler(const char *command_)
+ //{
+ //    char command[COMMAND_LENGTH];
+ //    int command_length, i,j;
+ //
+ //    // c_e[0] == *"VAR1_NAME", c_e[...] == *"VAR..._NAME", c_e[n] == *Expression
+ //    char* pt_tok[MAX_ASSIGNMENTS] = { NULL }; // exploded in '='
+ //
+ //    strcpy(command, command_);
+ //
+ //    i=0;
+ //    pt_tok[i++]=strtok(command, "=");
+ //    for(; NULL != ( pt_tok[i]=strtok(NULL, "=") ); i++)
+ //        ;
+ //
+ //    for(j=0; j<i; j++)
+ //        printf("String[%d]: %s\n",j ,pt_tok[j]);
+ //
+ //    char type_exp;
+ //    int valid_vars_name=1;
+ //    if(type_exp = is_validexp(pt_tok[i]))
+ //    {
+ //        for(j=0; j<i-1;j++)
+ //        {
+ //            if(!is_varname(pt_tok[j]))
+ //                valid_vars_name=0;
+ //        }
+ //    }
+ //    else valid_vars_name=0;
+ //        
+ //    if(valid_vars_name)
+ //    {
+ //        // Store accordling to its type
+ //        if(type_exp == 'N')
+ //    }
+ //
+ //
+ //    // var = exp
+ //    // checkout to see if exp is valid
+ //    // checkout to see if var has valid name
+ //    //
+ //    // check if var is still undeclared, then declare
+ //    // assign value
+ //
+ //    return 0;
+ //}
 
 
 int is_real(const char *number_)
