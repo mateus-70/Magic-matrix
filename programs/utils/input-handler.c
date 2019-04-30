@@ -268,10 +268,9 @@ int is_varname(const char *str_)
     return status;
 }
 
-int is_validexp(const char *str)
+char is_validexp(const char *str)
 {
-    type_exp;
-
+    char status;
     if(is_natural(str))
         status='N';
     else if( is_integer(str))
@@ -279,7 +278,7 @@ int is_validexp(const char *str)
     else if( is_rational(str))
             status='Q';
     else if(is_real(str))
-            status='Q';
+            status='R';
     else if(is_matrix(str))
             status='M';
     else
