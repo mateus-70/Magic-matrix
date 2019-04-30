@@ -10,6 +10,7 @@
 #define COMMAND_LENGTH 1000
 #define FALSE 0
 #define TRUE 1
+#define INVALID 0
 
 #define MAX_MATRICES 10
 #define MAX_NAME 10
@@ -29,8 +30,9 @@
 #define RATIONAL_TYPE "Q"
 #define REAL_TYPE "R"
 
-typedef long double Real;
+typedef int Bool;
 typedef unsigned int Natural;
+typedef long double Real;
 
 // Structs declaration - Start
 typedef struct {
@@ -86,7 +88,7 @@ int is_integer();
 int is_rational();
 int is_real();
 int is_matrix();
-char is_validexp();
+char validate_expression();
 int is_varname();
 int equation_handler();
 // Back-end functions declarations - End

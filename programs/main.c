@@ -49,7 +49,7 @@ int main(){
                                             printf("Transposing...\n");
                                         }else if(strchr(command, '=') != NULL ){
                                                 printf("Handling assignment...\n");
-                                                //equation_handler(command);
+                                                equation_handler(command);
 
                                             }else if(!strcmp(command, "help") || !strcmp(command, "?")){
                                                     printf("Avaiable commands are:\n\

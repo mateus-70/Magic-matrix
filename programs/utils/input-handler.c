@@ -11,52 +11,69 @@ const var reset_var = {};
 // A=[3 2; 3 45]
 // ofcourse functions
 // var=exp or var1=var2=exp
- //int equation_handler(const char *command_)
- //{
- //    char command[COMMAND_LENGTH];
- //    int command_length, i,j;
- //
- //    // c_e[0] == *"VAR1_NAME", c_e[...] == *"VAR..._NAME", c_e[n] == *Expression
- //    char* pt_tok[MAX_ASSIGNMENTS] = { NULL }; // exploded in '='
- //
- //    strcpy(command, command_);
- //
- //    i=0;
- //    pt_tok[i++]=strtok(command, "=");
- //    for(; NULL != ( pt_tok[i]=strtok(NULL, "=") ); i++)
- //        ;
- //
- //    for(j=0; j<i; j++)
- //        printf("String[%d]: %s\n",j ,pt_tok[j]);
- //
- //    char type_exp;
- //    int valid_vars_name=1;
- //    if(type_exp = is_validexp(pt_tok[i]))
- //    {
- //        for(j=0; j<i-1;j++)
- //        {
- //            if(!is_varname(pt_tok[j]))
- //                valid_vars_name=0;
- //        }
- //    }
- //    else valid_vars_name=0;
- //        
- //    if(valid_vars_name)
- //    {
- //        // Store accordling to its type
- //        if(type_exp == 'N')
- //    }
- //
- //
- //    // var = exp
- //    // checkout to see if exp is valid
- //    // checkout to see if var has valid name
- //    //
- //    // check if var is still undeclared, then declare
- //    // assign value
- //
- //    return 0;
- //}
+int equation_handler(const char *command_)
+{
+    char command[COMMAND_LENGTH];
+    
+    // Will hold the pointer to the command exploded in '=' symbol, 
+    // example: the entry: ABC = [3 2; 3 1]
+    // we will get &"ABC" and we will get &"[3 2; 3 1]
+    char* pt_part[MAX_ASSIGNMENTS] = { NULL }; 
+
+    strcpy(command, command_);
+
+    int i=0;
+    pt_part[i++]=strtok(command, "=");
+    for(; NULL != ( pt_part[i]=strtok(NULL, "=") ); i++)
+        ;
+
+    int j;
+    for(j=0; j<i; j++)
+        printf("String[%d]: %s\n",j ,pt_part[j]);
+
+    i--; // To positionate i on the last element
+    char type_exp;
+    Bool vars_name=VALID;
+    if( (type_exp = validate_expression(pt_part[i])) != INVALID )
+    {
+        for(j=0; j<i-1;j++)
+        {
+            if(INVALID == is_varname(pt_part[j]))
+                vars_name = INVALID;
+        }
+    }
+    else vars_name=INVALID;
+     
+    // If name is valid, store the data on the variables
+    if(INVALID != vars_name)
+    {
+        /// colocar dentro do for para outras variaveis
+        //
+
+        strcpy(variables[0].name, pt_part[0]); // store name
+
+        // Store accordling to its type
+        if(type_exp == 'R'){
+            strcpy(variables[0].data_type, "R"); //store type of the data
+            variables[0].value.r = strtold(pt_part[1]); //assign value pointed by pt of the right side exp
+        }else if(type_exp == 'M'){
+            strcpy(variables[0].data_type, "R"); //store type of the data
+            // todo: explode the string of matrix and store its data
+
+            variables[0].value.r = strtold(pt_part[1]); //assign value pointed by pt of the right side exp
+        }
+    }
+
+
+    // var = exp
+    // checkout to see if exp is valid
+    // checkout to see if var has valid name
+    //
+    // check if var is still undeclared, then declare
+    // assign value
+
+    return 0;
+}
 
 
 int is_real(const char *number_)
@@ -268,7 +285,7 @@ int is_varname(const char *str_)
     return status;
 }
 
-char is_validexp(const char *str)
+char validate_expression(const char *str)
 {
     char status;
     if(is_natural(str))
@@ -281,6 +298,8 @@ char is_validexp(const char *str)
             status='R';
     else if(is_matrix(str))
             status='M';
+    else if(is_varname(str))
+            status='V';
     else
         status=0;
     return status;
