@@ -5,6 +5,77 @@
 var variables[MAX_VARIABLES] = {};
 const var reset_var = {};
 
+int input_handler(const char * command_){
+	Bool manual_command;
+
+	const char commands_avaiable[][COMMAND_LENGTH] = {"insert", "edit", "delete", "list", "help", "quit"};
+    const int commands_count = 6;
+    Bool manual_command = FALSE;
+
+    char command[COMMAND_LENGTH];
+    strcpy(command, command_);
+
+    // Check to see if the command is like some value of 'commands_avaiable'
+    for(i=0; i < commands_count; i++){
+        if(!strcmp(commands_avaiable[i], argv[0])){
+            manual_command = TRUE;
+            break;
+        }
+    }
+
+    if(manual_command == TRUE){
+        manual_cmd_handler(){
+            
+        }
+    }
+
+/*
+        if(!strcmp(command, "insert") ){
+            printf("Inserting...\n");
+        }else if(!strcmp(command, "list")){
+                printf("Listing...\n");
+            }else if(!strcmp(command, "show")){
+                    printf("Showing...\n");
+                }else if(!strcmp(command, "edit")){
+                        printf("Editing...\n");
+                    }else if(!strcmp(command, "delete")){
+                            printf("Deleting...\n");
+                        }else if(!strcmp(command, "insert-polynomial")){
+                                printf("Still not implemented. Polynomial...\n");
+                                // insert_polynomial(functions[0]);
+                                }else if(!strcmp(command, "matrix-product")){
+                                        printf("Matrix product...\n");
+                                    }else if(!strcmp(command, "matrix-transpose")){
+                                            printf("Transposing...\n");
+                                        }else if(strchr(command, '=') != NULL ){
+                                                printf("Handling assignment...\n");
+                                                equation_handler(command);
+
+                                            }else if(!strcmp(command, "help") || !strcmp(command, "?")){
+                                                    printf("Avaiable commands are:\n\
+                                                            \rinsert\n\
+                                                            \rinsert-polynomial\n\
+                                                            \rlist\n\
+                                                            \rshow\n\
+                                                            \redit\n\
+                                                            \rdelete\n\
+                                                            \rmatrix-product\n\
+                                                            \rmatrix-transpose\n\
+                                                            \rvar=exp\n\
+                                                            \rhelp\n\
+                                                            \rquit\n");
+                                                }else if(!strcmp(command, "quit") || !strcmp(command, "exit") ){
+                                                        printf("Quiting...\n"); 
+                                                        quit=TRUE;
+                                                    }else{
+                                                        printf("Command not found.\n");
+                                                        valid_command=FALSE;
+                                                    }
+*/
+	return 0;
+}
+
+
 // It will handle inputs like
 // a=1
 // b=5.4
@@ -305,4 +376,6 @@ char validate_expression(const char *str)
     return status;
 }
 
-
+int evaluate_expression(){
+    return 0;
+}
