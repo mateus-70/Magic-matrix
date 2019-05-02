@@ -1,24 +1,115 @@
 .\" Manpage for nuseradd.
 .\" Contact mateus.schroeder@gmail.com to correct errors or typos.
-.TH man 1 "1 may 2019" "0.01" "Magical matrix man page"
+.TH man 1 "2 may 2019" "0.01" "Magic Matrix man page"
 .SH NAME
-Magical Matrix \- Mathematical program used to resolve calculate matrix product, and another matrix functions. 
+Magic Matrix \- Mathematical program used to resolve calculate matrix product, and another matrix functions. 
 .SH SYNOPSIS
-magical-matrix [USERNAME]
+magic-matrix 
 .SH DESCRIPTION
-Magical Matrix is facilitator for finding results by numerical calculus.
-.SH OPTIONS
-NTZ - Numerical theory (integer/Zahlen) mode: the program will start receiving all variables as Integers .
+Magic Matrix is facilitator for finding results by number calculus.
+
+.SH INTERNAL\-COMMANDS
+.PP Avaiable after you enter the program.
+.TP
+\fBlist\fR 
+.IP
+\fIvariable-type\fR
+lists all variables of the specified type.
+.IP
+\fB-num\fR, \fB--numbers\fR
+lists any number.
+.IP
+\fB-a\fR, \fB--any\fR
+lists any number, matrix or function.
+.TP
+\fBinsert\fR [\fIvariable-type\fR] \fIvariable1-name\fR [,\fIvariable2-name\fR] ...
+insert a variable of the given type or default type for current \fBmode\fR
+.TP
+\fBedit\fR \fIvariable\-name\fR
+edit a variable value or name, given name.
+.TP
+\fBdelete\fR \fI variable\-name\fR
+delete a variable, given name.
+.TP
+\fBset-mode\fR \fImode\fR 
+change the current to the given \fImode\fR.
+.TP
+\fBhelp\fR
+list the commands avaiable.
+.TP
+\fIexpression\fR
+varname
 .br
-NTZ - Numerical theory (Natural) mode: the program will start receiving all variables as Natural.
+varname = <evaluable expression>
 .br
-NT - Numerical theory mode: the same as <NTZ>.
+varname1 = varname2 = <evaluable expression>
 .br
-NC - Numerical calculus mode: the program will receive all variables as Real (long double) and will approximate the results.
+Note: \fIevaluable expression\fR can be a \fInumber\fR or a \fImatrix\fR of numbers.
+
+.SH VARIABLE TYPES
+.PP
+This is not the same as \fIDATA TYPES\fR. Variables do have unique name.
+.TP
+.TP
+\fBN\fR, \fBnaturals\fR
+match any natural number.
+.TP
+\fBZ\fR, \fBintegers\fR
+match any integer number.
+.TP
+\fBQ\fR, \fBrationals\fR
+match any rational number.
+.TP
+\fBR\fR, \fBreal\fR
+match any real number.
+.TP
+\fBM\fR, \fBmatrices\fR
+match any matrix.
+\fB\fR
+
+.SH INVOCATION OPTIONS
+.PP 
+The program can be started in a given mode. The modes are explained in \fBMODES\fR section.
+
+.SH MODES
+.TP
+\fB-INT\fR, \fBInteger Number Theory\fR, \fBZahlen Number Theory\fR
+The program will set to receive variables as Integers.
+.TP
+\fB-NNT\fR, \fBNatural Number Theory\fR
+The program will set to receive variables as Natural.
+.TP
+\fB-NT\fR, \fBNumber Theory\fR 
+The same as Integer Number Theory.
+.TP
+\fB-NC\fR, \fBNumerical Calculus\fR
+The program will set to receive variables as Real.
 .br
-A - Algebra mode: (still not implemented).
-.br
+This is the \fIdefault\fR value for mode.
+.TP
+\fB-A\fR, \fBAlgebra\fR
+The program will not make approximations and will try to give algebraic answers.
+
+
+.SH DATA TYPES
+.PP
+The type that the user deal with, and the C data type declared in the program. This is not the same as \fIvariable type\fR.
+.TP
+\fBReal\fR
+long double
+.TP 
+\fBNatural\fR
+unsigned integer
+.TP 
+\fBInteger\fR
+integer
+.TP 
+\fBBool\fR
+integer
+
 .SH BUGS
-No known bugs. If any, please report it on github
+Are you kidding me?
 .SH AUTHOR
-Mateus Schroeder da Silva (mateus.schroeder@gmail.com
+Mateus Schroeder da Silva (mateus.schroeder@gmail.com)
+.SH HISTORY
+Created in 2019-05-01.
