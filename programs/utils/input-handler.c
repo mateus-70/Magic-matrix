@@ -14,9 +14,20 @@ int input_handler(const char * command_){
     char command[COMMAND_LENGTH];
     strcpy(command, command_);
     if(wantto_edit(command_)){
-        puts("Match.\n\n");
-    }else
-        puts("Wrong.\n\n");
+        puts("Edit, Match.\n\n");
+    }else if(wantto_delete(command_)){
+        puts("Delete, Match.\n\n");
+    }else if(wantto_setmode(command_)){
+        puts("Set mode, Match.\n\n");
+    }else if(wantto_list(command_)){
+        puts("List, Match.\n\n");
+    }else if(wantto_help(command_)){
+        puts("Help, Match.\n\n");
+    }else if(wantto_insert(command_)){
+        puts("Insert, Match.\n\n");
+    }else{
+    puts("Didnt match any elementar action.\n\n");
+    }
 
 // --    // Check to see if the command is like some value of 'commands_avaiable'
 // --    for(int i=0; i < commands_count; i++){
@@ -401,9 +412,7 @@ int wantto_edit(const char* str_){
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
-        strcat(error_message,"Failure (in ");
-        strcat(error_message, __FUNCTION__);
-        strcat(error_message, "): Cannot compile regular expression!\n\n");
+        strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
 
         printf(error_message);
         exit(1);
@@ -426,3 +435,122 @@ int wantto_edit(const char* str_){
 	regfree(&regex);
     return status;
 }
+
+
+int wantto_delete(const char* str_){
+    int reti, status; //return integer
+
+    // --char str[STR_MAX_MATRIX];
+
+    regex_t regex;
+    char error_message[300];
+    char str[COMMAND_LENGTH];
+    strcpy(str, str_);
+    char pattern[300]={0};
+    strcat(pattern, "^delete [a-zA-Z][a-zA-Z0-9]{0,");
+    char aux[300]={};
+    sprintf(aux, "%d", VARIABLE_MAX_NAME);
+    strcat(pattern, aux);
+    strcat(pattern, "}$");
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
+    if(reti)
+    {
+        strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
+
+        printf(error_message);
+        exit(1);
+    }
+
+    reti = regexec(&regex, str, 0, NULL, 0);
+    if(!reti)
+        status = 1;
+    else
+        if(reti == REG_NOMATCH)
+            status = 0;
+        else
+        {
+            regerror(reti, &regex, str, sizeof(str));
+            fprintf(stderr, "Regex match failed: %s\n", str);
+            status = 0;
+            exit(1);
+        }
+
+	regfree(&regex);
+    return status;
+}
+
+
+
+int wantto_setmode(const char* str_){
+    int reti, status; //return integer
+
+    // --char str[STR_MAX_MATRIX];
+
+    regex_t regex;
+    char error_message[300];
+    char str[COMMAND_LENGTH];
+    strcpy(str, str_);
+    char pattern[300]= "^set-mode (-INT|-NNT|-NT|-NC|-A)";
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
+    if(reti)
+    {
+        strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
+        printf(error_message);
+        exit(1);
+    }
+
+    reti = regexec(&regex, str, 0, NULL, 0);
+    if(!reti)
+        status = 1;
+    else
+        if(reti == REG_NOMATCH)
+            status = 0;
+        else
+        {
+            regerror(reti, &regex, str, sizeof(str));
+            fprintf(stderr, "Regex match failed: %s\n", str);
+            status = 0;
+            exit(1);
+        }
+
+	regfree(&regex);
+    return status;
+}
+
+
+int wantto_list(const char* str_){
+    int reti, status; //return integer
+
+    // --char str[STR_MAX_MATRIX];
+
+    regex_t regex;
+    char error_message[300];
+    char str[COMMAND_LENGTH];
+    strcpy(str, str_);
+    char pattern[300]= "^list ()";
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
+    if(reti)
+    {
+        strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
+        printf(error_message);
+        exit(1);
+    }
+
+    reti = regexec(&regex, str, 0, NULL, 0);
+    if(!reti)
+        status = 1;
+    else
+        if(reti == REG_NOMATCH)
+            status = 0;
+        else
+        {
+            regerror(reti, &regex, str, sizeof(str));
+            fprintf(stderr, "Regex match failed: %s\n", str);
+            status = 0;
+            exit(1);
+        }
+
+	regfree(&regex);
+    return status;
+}
+
