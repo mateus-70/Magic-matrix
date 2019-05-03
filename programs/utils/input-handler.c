@@ -511,3 +511,59 @@ int wantto_list(const char* str_){
     return status;
 }
 
+int wantto_help(const char* str){
+
+    int reti, status; //return integer
+    regex_t regex;
+    char error_message[300];
+    char str[COMMAND_LENGTH];
+    strcpy(str, str_);
+    for(int i=0; i< strlen(str); i++ )
+        str[i]=toupper(str[i]);
+    char pattern[300]= "^help (MODES|VARIABLES|INTERNAL-COMMANDS|DATA-TYPES|VERSION)[:blank:]$";
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
+    if(reti)
+    {
+        strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
+        printf(error_message);
+        exit(1);
+    }
+
+    reti = regexec(&regex, str, 0, NULL, 0);
+    if(!reti)
+        status = 1;
+    else
+        if(reti == REG_NOMATCH)
+            status = 0;
+        else
+        {
+            regerror(reti, &regex, str, sizeof(str));
+            fprintf(stderr, "Regex match failed: %s\n", str);
+            status = 0;
+            exit(1);
+        }
+
+	regfree(&regex);
+    return status;
+}
+//     if(argc == 0){
+//         // usage, internal commands
+//         printf(PROGRAM_NAME" \n");
+//         printf("For specific help:\n");
+//         printf("help --about \n");
+//         printf("\t general info about this program. \n");
+//         printf("help --internal-commands \n");
+//         printf("\tList internal commands avaiable.\n");
+//         printf("help --variable \n");
+//         printf("\tShow info about variables.\n");
+//         printf("help --modes \n");
+//         printf("Show info about operational modes.\n");
+//     }else{
+//         printf("Show specific help.\n");
+//     }
+//     return 0;
+// }
+
+int wantto_insert(){
+    
+}

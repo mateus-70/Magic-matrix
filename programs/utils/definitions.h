@@ -30,6 +30,8 @@
 #define RATIONAL_TYPE "Q"
 #define REAL_TYPE "R"
 
+#define PROGRAM_NAME "Magic Matrix"
+
 typedef int Bool;
 typedef unsigned int Natural;
 typedef long double Real;
@@ -108,7 +110,12 @@ int delete_matrix();
 int transpose_matrix();
 int matrix_product();
 int echelon_matrix();
+int wantto_help();
+int wantto_insert();
+int wantto_list();
 int wantto_edit();
+int wantto_delete();
+int wantto_setmode();
 // Front-end functions declaratins - End
 
 int str_to_q(const char *, Q *);
