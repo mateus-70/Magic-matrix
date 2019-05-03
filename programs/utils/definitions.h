@@ -51,6 +51,11 @@ typedef struct
 {
     char name[VARIABLE_MAX_NAME];
     char data_type[MAX_DATA_TYPE];
+    int status; 
+    // '1' for avaiable
+    // '0' for not initialized
+    // '-1' for deleted
+    // '-2' for blocked
     union 
     {
         Natural n;
@@ -91,6 +96,7 @@ int is_matrix();
 char validate_expression();
 int is_varname();
 int equation_handler();
+int input_handler();
 // Back-end functions declarations - End
 
 // Front-end functions declaratins - Start
@@ -102,6 +108,7 @@ int delete_matrix();
 int transpose_matrix();
 int matrix_product();
 int echelon_matrix();
+int wantto_edit();
 // Front-end functions declaratins - End
 
 int str_to_q(const char *, Q *);

@@ -23,11 +23,13 @@ int main(){
     int quit, valid_command;
 
     system("clear");
+    puts("Welcommen\n\n");
     //if(is_rational("-2"))puts("it works");else puts("TOO BAD");
     do{
         printf("\nCommand: ");
         fgets(command, COMMAND_LENGTH-1, stdin);
         command[strcspn(command, "\n")] = '\0';
+        input_handler(command);
         quit=FALSE;
         valid_command=TRUE;
     }while(valid_command==FALSE || quit==FALSE);

@@ -4,7 +4,7 @@
 .SH NAME
 Magic Matrix \- Mathematical program used to resolve calculate matrix product, and another matrix functions. 
 .SH SYNOPSIS
-magic-matrix 
+magic-matrix \fI[MODE]\fR
 .SH DESCRIPTION
 Magic Matrix is facilitator for finding results by number calculus.
 
@@ -22,7 +22,7 @@ lists any number.
 \fB-a\fR, \fB--any\fR
 lists any number, matrix or function.
 .TP
-\fBinsert\fR [\fIvariable-type\fR] \fIvariable1-name\fR [,\fIvariable2-name\fR] ...
+\fBinsert\fR [\fIvariable1-type\fR] \fIvariable1-name[=variable1-value]\fR [, ...]
 insert a variable of the given type or default type for current \fBmode\fR
 .TP
 \fBedit\fR \fIvariable\-name\fR
@@ -35,6 +35,7 @@ delete a variable, given name.
 change the current to the given \fImode\fR.
 .TP
 \fBhelp\fR
+.br
 list the commands avaiable.
 .TP
 \fIexpression\fR
@@ -66,10 +67,6 @@ match any real number.
 \fBM\fR, \fBmatrices\fR
 match any matrix.
 \fB\fR
-
-.SH INVOCATION OPTIONS
-.PP 
-The program can be started in a given mode. The modes are explained in \fBMODES\fR section.
 
 .SH MODES
 .TP
