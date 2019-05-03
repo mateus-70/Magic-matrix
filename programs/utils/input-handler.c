@@ -43,49 +43,6 @@ int input_handler(const char * command_){
 //        }
 //    }
 
-/*
-        if(!strcmp(command, "insert") ){
-            printf("Inserting...\n");
-        }else if(!strcmp(command, "list")){
-                printf("Listing...\n");
-            }else if(!strcmp(command, "show")){
-                    printf("Showing...\n");
-                }else if(!strcmp(command, "edit")){
-                        printf("Editing...\n");
-                    }else if(!strcmp(command, "delete")){
-                            printf("Deleting...\n");
-                        }else if(!strcmp(command, "insert-polynomial")){
-                                printf("Still not implemented. Polynomial...\n");
-                                // insert_polynomial(functions[0]);
-                                }else if(!strcmp(command, "matrix-product")){
-                                        printf("Matrix product...\n");
-                                    }else if(!strcmp(command, "matrix-transpose")){
-                                            printf("Transposing...\n");
-                                        }else if(strchr(command, '=') != NULL ){
-                                                printf("Handling assignment...\n");
-                                                equation_handler(command);
-
-                                            }else if(!strcmp(command, "help") || !strcmp(command, "?")){
-                                                    printf("Avaiable commands are:\n\
-                                                            \rinsert\n\
-                                                            \rinsert-polynomial\n\
-                                                            \rlist\n\
-                                                            \rshow\n\
-                                                            \redit\n\
-                                                            \rdelete\n\
-                                                            \rmatrix-product\n\
-                                                            \rmatrix-transpose\n\
-                                                            \rvar=exp\n\
-                                                            \rhelp\n\
-                                                            \rquit\n");
-                                                }else if(!strcmp(command, "quit") || !strcmp(command, "exit") ){
-                                                        printf("Quiting...\n"); 
-                                                        quit=TRUE;
-                                                    }else{
-                                                        printf("Command not found.\n");
-                                                        valid_command=FALSE;
-                                                    }
-*/
 	return 0;
 }
 
