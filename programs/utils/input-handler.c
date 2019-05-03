@@ -14,9 +14,9 @@ int input_handler(const char * command_){
     char command[COMMAND_LENGTH];
     strcpy(command, command_);
     if(wantto_edit(command_)){
-        puts("You should edit that.\n\n\n");
+        puts("Match.\n\n");
     }else
-        puts("I think you should not edit that.\n\n\n");
+        puts("Wrong.\n\n");
 
 // --    // Check to see if the command is like some value of 'commands_avaiable'
 // --    for(int i=0; i < commands_count; i++){
@@ -392,7 +392,13 @@ int wantto_edit(const char* str_){
     char error_message[300];
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
-    reti = regcomp( &regex, "^edit [a-zA-Z][a-zA-Z0-9]*$", REG_EXTENDED);
+    char pattern[300]={0};
+    strcat(pattern, "^edit [a-zA-Z][a-zA-Z0-9]{0,");
+    char aux[300]={};
+    sprintf(aux, "%d", VARIABLE_MAX_NAME);
+    strcat(pattern, aux);
+    strcat(pattern, "}$");
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
         strcat(error_message,"Failure (in ");
