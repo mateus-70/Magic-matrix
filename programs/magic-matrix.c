@@ -28,11 +28,11 @@ int main(){
     do{
         printf("\nCommand: ");
         fgets(command, COMMAND_LENGTH-1, stdin);
+        if(command[0] == '\n')
+            continue;
         command[strcspn(command, "\n")] = '\0';
-        input_handler(command);
-        quit=FALSE;
-        valid_command=TRUE;
-    }while(valid_command==FALSE || quit==FALSE);
+        quit = input_handler(command);
+    }while(quit != 'Q');
 
     return 0;
 }

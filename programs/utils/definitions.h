@@ -30,6 +30,8 @@
 #define RATIONAL_TYPE "Q"
 #define REAL_TYPE "R"
 
+#define ERROR_MESSAGE_LENGTH 300
+
 #define PROGRAM_NAME "Magic Matrix"
 
 typedef int Bool;
@@ -98,7 +100,7 @@ int is_matrix();
 char validate_expression();
 int is_varname();
 int equation_handler();
-int input_handler();
+char input_handler();
 // Back-end functions declarations - End
 
 // Front-end functions declaratins - Start
@@ -116,6 +118,7 @@ int wantto_list();
 int wantto_edit();
 int wantto_delete();
 int wantto_setmode();
+int wantto_quit();
 // Front-end functions declaratins - End
 
 int str_to_q(const char *, Q *);
