@@ -132,7 +132,7 @@ char input_handler(const char * command_){
 int is_real(const char *number_)
 {
     int reti, status; //return integer
-
+    char error_message[ERROR_MESSAGE_LENGTH]={};
     char number[STR_MAX_NUMBER];
 
     regex_t regex;
@@ -141,7 +141,8 @@ int is_real(const char *number_)
     reti = regcomp( &regex, "^[-+]?[0-9]+(.[0-9]*)?$", REG_EXTENDED);
     if(reti)
     {
-        printf("Failure (in is_rational): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
         exit(1);
     }
 
@@ -168,7 +169,7 @@ int is_real(const char *number_)
 int is_rational(const char *number_)
 {
     int reti, status; //return integer
-
+    char error_message[ERROR_MESSAGE_LENGTH]={};
     char number[STR_MAX_NUMBER];
 
     regex_t regex;
@@ -177,7 +178,8 @@ int is_rational(const char *number_)
     reti = regcomp( &regex, "^[-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?$", REG_EXTENDED);
     if(reti)
     {
-        printf("Failure (in is_rational): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
         exit(1);
     }
 
@@ -203,7 +205,7 @@ int is_rational(const char *number_)
 int is_integer(const char *number_)
 {
     int reti, status; //return integer
-
+    char error_message[ERROR_MESSAGE_LENGTH]={};
     char number[STR_MAX_NUMBER];
 
     regex_t regex;
@@ -212,7 +214,8 @@ int is_integer(const char *number_)
     reti = regcomp( &regex, "^[0-9]+$", REG_EXTENDED);
     if(reti)
     {
-        printf("Failure (in is_integer): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
         exit(1);
     }
 
@@ -238,7 +241,7 @@ int is_integer(const char *number_)
 int is_natural(const char *number_)
 {
     int reti, status; //return integer
-
+    char error_message[ERROR_MESSAGE_LENGTH]={};
     char number[STR_MAX_NUMBER];
 
     regex_t regex;
@@ -247,7 +250,8 @@ int is_natural(const char *number_)
     reti = regcomp( &regex, "^[0-9]+$", REG_EXTENDED);
     if(reti)
     {
-        printf("Failure (in is_natural): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
         exit(1);
     }
 
@@ -273,7 +277,7 @@ int is_natural(const char *number_)
 int is_matrix(const char *str_)
 {
     int reti, status; //return integer
-
+    char error_message[ERROR_MESSAGE_LENGTH]={};
     char str[STR_MAX_MATRIX];
 
     regex_t regex;
@@ -282,7 +286,8 @@ int is_matrix(const char *str_)
     reti = regcomp( &regex, "^\[.*]$", REG_EXTENDED);
     if(reti)
     {
-        printf("Failure (in is_matrix): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
         exit(1);
     }
 
@@ -307,16 +312,16 @@ int is_matrix(const char *str_)
 int is_varname(const char *str_)
 {
     int reti, status; //return integer
-
     char str[STR_MAX_MATRIX];
-
+    char error_message[ERROR_MESSAGE_LENGTH]={};
     regex_t regex;
     
     strcpy(str, str_);
     reti = regcomp( &regex, "^[a-zA-Z_][a-zA-Z0-9_]*$", REG_EXTENDED);
     if(reti)
     {
-        printf("Failure (in is_varname): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
         exit(1);
     }
 
@@ -380,8 +385,7 @@ int wantto_edit(const char* str_){
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
-        // strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
-
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
         printf(error_message);
         exit(1);
     }
@@ -423,8 +427,7 @@ int wantto_delete(const char* str_){
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
-        // strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
-
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
         printf(error_message);
         exit(1);
     }
@@ -451,9 +454,6 @@ int wantto_delete(const char* str_){
 
 int wantto_setmode(const char* str_){
     int reti, status; //return integer
-
-    // --char str[STR_MAX_MATRIX];
-
     regex_t regex;
     char error_message[300];
     char str[COMMAND_LENGTH];
@@ -462,7 +462,7 @@ int wantto_setmode(const char* str_){
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
-        // strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
         printf(error_message);
         exit(1);
     }
@@ -488,9 +488,6 @@ int wantto_setmode(const char* str_){
 
 int wantto_list(const char* str_){
     int reti, status; //return integer
-
-    // --char str[STR_MAX_MATRIX];
-
     regex_t regex;
     char error_message[ERROR_MESSAGE_LENGTH];
     char str[COMMAND_LENGTH];
@@ -526,7 +523,7 @@ int wantto_help(const char* str_){
 
     int reti, status; //return integer
     regex_t regex;
-    char error_message[300];
+    char error_message[ERROR_MESSAGE_LENGTH];
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
     for(int i=0; i< strlen(str); i++ )
@@ -535,7 +532,7 @@ int wantto_help(const char* str_){
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
-        //strcpy(error_message, "Failure (in " __FUNCTION__ "): Cannot compile regular expression!\n\n");
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
         printf(error_message);
         exit(1);
     }
