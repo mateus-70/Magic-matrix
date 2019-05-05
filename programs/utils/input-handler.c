@@ -25,7 +25,7 @@ char input_handler(const char * command_){
     }else if(wantto_list(command_)){
         puts("List, Match.\n\n");
         state='L';
-        list_user_variables()
+        list_user_variables();
     }else if(wantto_help(command_)){
         puts("Help, Match.\n\n");
         state='H';
@@ -495,7 +495,7 @@ int wantto_list(const char* str_){
     char error_message[ERROR_MESSAGE_LENGTH];
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
-    char pattern[300]= "^list -(-naturals?|N|-integers?|Z|-rationals?|Q|-reals?|R|-number|num|-variables?|var|-all|-any|a)[:blank:]*$";
+    char pattern[300]= "^[[:blank:]]*list([[:blank:]]+(--naturals?|-N|--integers?|-Z|--rationals?|-Q|--reals?|-R|--number|--num|--variables?|--var|--all|--any|-a)?)*$";
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -616,3 +616,7 @@ int wantto_quit(const char* str_){
     return status;
 }
 
+int list_user_variables(){
+    printf(__FUNCTION__);
+    return 0;
+}

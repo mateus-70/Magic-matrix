@@ -101,6 +101,7 @@ char validate_expression();
 int is_varname();
 int equation_handler();
 char input_handler();
+int list_user_variables();
 // Back-end functions declarations - End
 
 // Front-end functions declaratins - Start
