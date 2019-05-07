@@ -34,6 +34,15 @@
 
 #define PROGRAM_NAME "Magic Matrix"
 
+// Regex patters 
+#define RGX_TYPE "(naturals?|N|integers?|Z|rationals?|Q|reals?|R|matri(x|ces))";
+#define RGX_VARNAME "([a-zA-Z_][a-zA-Z0-9_]*)";
+#define RGX_NATURAL "([0-9]+)";
+#define RGX_INTEGER "([+-]?[0-9]+)";
+#define RGX_RATIONAL "([-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?)";
+#define RGX_REAL "([-+]?[0-9]+(.[0-9]*)?)";
+#define RGX_MATRIX "\[[[:blank:]]*(\d \d)[[:blank:]]*\]";
+
 typedef int Bool;
 typedef unsigned int Natural;
 typedef long double Real;

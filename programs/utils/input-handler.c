@@ -372,8 +372,46 @@ int evaluate_expression(){
 }
 
 
-int wantto_insert(){
-   return 0; 
+int wantto_insert(const char* str_){
+    int reti, status; //return integer
+    regex_t regex;
+    char error_message[ERROR_MESSAGE_LENGTH];
+    char str[COMMAND_LENGTH];
+    strcpy(str, str_);
+    rgx_type = "(naturals?|N|integers?|Z|rationals?|Q|reals?|R|matri(x|ces))";
+    rgx_varname = "[a-zA-Z_][a-zA-Z0-9_]*";
+    rgx_isnatural = "[0-9]+";
+    rgx_isinteger = "(+|-)?[0-9]+";
+    rgx_isrational = "[-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?";
+    rgx_isreal = "^[-+]?[0-9]+(.[0-9]*)?$";
+    
+    rgx_ismatrix = "";
+    char pattern[300];
+    snprintf("","^[[:blank:]]*insert[[:blank:]]+(", rgx_type, "?[[:blank:]])?", rgx_varname, "(=)$");
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
+    if(reti)
+    {
+        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+        printf(error_message);
+        exit(1);
+    }
+
+    reti = regexec(&regex, str, 0, NULL, 0);
+    if(!reti)
+        status = 1;
+    else
+        if(reti == REG_NOMATCH)
+            status = 0;
+        else
+        {
+            regerror(reti, &regex, str, sizeof(str));
+            fprintf(stderr, "Regex match failed: %s\n", str);
+            status = 0;
+            exit(1);
+        }
+
+	regfree(&regex);
+    return status;
 }
 
 int wantto_list(const char* str_){
