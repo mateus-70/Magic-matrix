@@ -138,7 +138,7 @@ int is_real(const char *number_)
     regex_t regex;
     
     strcpy(number, number_);
-    reti = regcomp( &regex, "^[-+]?[0-9]+(.[0-9]*)?$", REG_EXTENDED);
+    reti = regcomp( &regex, "^[[:blank:]]*[-+]?[0-9]+(.[0-9]*)?[[:blank:]]*$", REG_EXTENDED);
     if(reti)
     {
         snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
@@ -175,7 +175,7 @@ int is_rational(const char *number_)
     regex_t regex;
     
     strcpy(number, number_);
-    reti = regcomp( &regex, "^[-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?$", REG_EXTENDED);
+    reti = regcomp( &regex, "^[[:blank:]]*[-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?[[:blank:]]*$", REG_EXTENDED);
     if(reti)
     {
         snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
@@ -211,7 +211,7 @@ int is_integer(const char *number_)
     regex_t regex;
     
     strcpy(number, number_);
-    reti = regcomp( &regex, "^[0-9]+$", REG_EXTENDED);
+    reti = regcomp( &regex, "^[[:blank:]]*[0-9]+[[:blank:]]*$", REG_EXTENDED);
     if(reti)
     {
         snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
@@ -247,7 +247,7 @@ int is_natural(const char *number_)
     regex_t regex;
     
     strcpy(number, number_);
-    reti = regcomp( &regex, "^[0-9]+$", REG_EXTENDED);
+    reti = regcomp( &regex, "^[[:blank::]*[0-9]+[[:blank:]]*$", REG_EXTENDED);
     if(reti)
     {
         snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
@@ -317,7 +317,7 @@ int is_varname(const char *str_)
     regex_t regex;
     
     strcpy(str, str_);
-    reti = regcomp( &regex, "^[a-zA-Z_][a-zA-Z0-9_]*$", REG_EXTENDED);
+    reti = regcomp( &regex, "^[[:blank:]]*[a-zA-Z_][a-zA-Z0-9_]*[[:blank:]]*$", REG_EXTENDED);
     if(reti)
     {
         snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
@@ -377,11 +377,11 @@ int wantto_edit(const char* str_){
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
     char pattern[300]={0};
-    strcat(pattern, "^edit [a-zA-Z][a-zA-Z0-9]{0,");
+    strcat(pattern, "[[:blank:]]*edit[[:blank:]]+[a-zA-Z][a-zA-Z0-9]{0,");
     char aux[300]={};
     sprintf(aux, "%d", VARIABLE_MAX_NAME);
     strcat(pattern, aux);
-    strcat(pattern, "}$");
+    strcat(pattern, "}[[:blank:]]*$");
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -419,11 +419,11 @@ int wantto_delete(const char* str_){
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
     char pattern[300]={0};
-    strcat(pattern, "^delete [a-zA-Z][a-zA-Z0-9]{0,");
+    strcat(pattern, "^[[:blank:]]*delete[[:blank:]]+[a-zA-Z][a-zA-Z0-9]{0,");
     char aux[300]={};
     sprintf(aux, "%d", VARIABLE_MAX_NAME);
     strcat(pattern, aux);
-    strcat(pattern, "}$");
+    strcat(pattern, "}[[:blank:]]*$");
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -458,7 +458,7 @@ int wantto_setmode(const char* str_){
     char error_message[300];
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
-    char pattern[300]= "^set-mode (-INT|-NNT|-NT|-NC|-A)";
+    char pattern[300]= "^[[:blank:]]*set-mode[[:blank:]]+(-INT|-NNT|-NT|-NC|-A)[[:blank:]]*";
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -492,7 +492,7 @@ int wantto_list(const char* str_){
     char error_message[ERROR_MESSAGE_LENGTH];
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
-    char pattern[300]= "^[[:blank:]]*list([[:blank:]]+(--naturals?|-N|--integers?|-Z|--rationals?|-Q|--reals?|-R|--number|--num|--variables?|--var|--all|--any|-a)?)*$";
+    char pattern[300]= "^[[:blank:]]*list([[:blank:]]+(--naturals?|-N|--integers?|-Z|--rationals?|-Q|--reals?|-R|--number|--num|--variables?|--var|--all|--any|-a)?)*[[:blank:]]*$";
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -528,7 +528,10 @@ int wantto_help(const char* str_){
     strcpy(str, str_);
     for(int i=0; i< strlen(str); i++ )
         str[i]=toupper(str[i]);
-    char pattern[300]= "^help (MODES|VARIABLES|INTERNAL-COMMANDS|DATA-TYPES|VERSION)[:blank:]$";
+    char pattern[300]= "^[[:blank:]]*HELP([[:blank:]]+(MODES|VARIABLES|INTERNAL-COMMANDS|DATA-TYPES|VERSION))?[[:blank:]]*$";
+    puts("\n\n");
+    puts(str);
+    puts("\n\n");
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -586,7 +589,7 @@ int wantto_quit(const char* str_){
     char error_message[ERROR_MESSAGE_LENGTH];
     char str[COMMAND_LENGTH];
     strcpy(str, str_);
-    char pattern[300]= "^[:blank:]*quit[:blank:]*$";
+    char pattern[300]= "^[[:blank:]]*quit[[:blank:]]*$";
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
