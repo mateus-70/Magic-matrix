@@ -6,6 +6,7 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include <locale.h>
 
 #define COMMAND_LENGTH 1000
 #define FALSE 0
@@ -134,4 +135,6 @@ int wantto_quit();
 int str_to_q(const char *, Q *);
 
 int var_qt;
+
+int generate_primes();
 #endif
