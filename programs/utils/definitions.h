@@ -19,6 +19,7 @@
 #define STR_MAX_MATRIX 20
 #define MAX_MATRIX_ROWS 10
 #define MAX_MATRIX_COWS 10
+#define PATTERN_MAX_LENGTH 1000
 
 #define VARIABLE_MAX_NAME 30
 #define MAX_DATA_TYPE 30
@@ -41,8 +42,8 @@
 #define RGX_NATURAL "([0-9]+)";
 #define RGX_INTEGER "([+-]?[0-9]+)";
 #define RGX_RATIONAL "([-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?)";
-#define RGX_REAL "([-+]?[0-9]+(.[0-9]*)?)";
-#define RGX_MATRIX "\[[[:blank:]]*(\d \d)[[:blank:]]*\]";
+#define RGX_REAL "([-+]?[0-9]+(\.[0-9]*)?)";
+#define RGX_MATRIX "(\[[[:blank:]]*(\d[[:blank:]]*)[[:blank:]]*\])";
 
 typedef int Bool;
 typedef unsigned int Natural;
