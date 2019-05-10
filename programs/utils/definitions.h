@@ -46,7 +46,7 @@
 #define RGX_MATRIX "(\[[[:blank:]]*(\d[[:blank:]]*)[[:blank:]]*\])";
 
 typedef int Bool;
-typedef unsigned int Natural;
+typedef unsigned long int Natural;
 typedef long double Real;
 
 // Structs declaration - Start
@@ -137,5 +137,7 @@ int str_to_q(const char *, Q *);
 
 int var_qt;
 
-int generate_primes();
+int generate_fibonacci();
+Natural generate_primes();
+Natural lowest_common_multiple();
 #endif
