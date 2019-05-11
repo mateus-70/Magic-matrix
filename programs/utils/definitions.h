@@ -6,7 +6,9 @@
 #include <string.h>
 #include <ctype.h>
 #include <math.h>
+#include <gmp.h>
 #include <locale.h>
+#include <limits.h>
 
 #define COMMAND_LENGTH 1000
 #define FALSE 0
@@ -37,16 +39,15 @@
 #define PROGRAM_NAME "Magic Matrix"
 
 // Regex patters 
-#define RGX_TYPE "(naturals?|N|integers?|Z|rationals?|Q|reals?|R|matri(x|ces))";
-#define RGX_VARNAME "([a-zA-Z_][a-zA-Z0-9_]*)";
-#define RGX_NATURAL "([0-9]+)";
-#define RGX_INTEGER "([+-]?[0-9]+)";
-#define RGX_RATIONAL "([-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?)";
-#define RGX_REAL "([-+]?[0-9]+(\.[0-9]*)?)";
-#define RGX_MATRIX "(\[[[:blank:]]*(\d[[:blank:]]*)[[:blank:]]*\])";
+#define RGX_TYPE "(naturals?|N|integers?|Z|rationals?|Q|reals?|R|matri(x|ces))"
+#define RGX_VARNAME "([a-zA-Z_][a-zA-Z0-9_]*)"
+#define RGX_NATURAL "([0-9]+)"
+#define RGX_INTEGER "([+-]?[0-9]+)"
+#define RGX_RATIONAL "([-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?)"
+#define RGX_REAL "([-+]?[0-9]+(\.[0-9]*)?)"
 
 typedef int Bool;
-typedef unsigned long int Natural;
+typedef unsigned long long int Natural;
 typedef long double Real;
 
 // Structs declaration - Start

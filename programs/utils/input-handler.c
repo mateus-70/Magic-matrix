@@ -291,7 +291,7 @@ int is_real(const char *number_)
 
 int is_matrix(const char *str_)
 {
-    int reti, status; //return integer
+    int reti, prestatus; //return integer
     char error_message[ERROR_MESSAGE_LENGTH]={};
     char str[STR_MAX_MATRIX];
 
@@ -299,7 +299,7 @@ int is_matrix(const char *str_)
     
     strcpy(str, str_);
     char pattern[PATTERN_MAX_LENGTH]={};
-    snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$", RGX_MATRIX);
+    snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$", "\[.*\]");
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -310,19 +310,28 @@ int is_matrix(const char *str_)
 
     reti = regexec(&regex, str, 0, NULL, 0);
     if(!reti)
-        status = 1;
+        prestatus = 1;
     else
         if(reti == REG_NOMATCH)
-            status = 0;
+            prestatus = 0;
         else
         {
             regerror(reti, &regex, str, sizeof(str));
             fprintf(stderr, "Regex match failed: %s\n", str);
-            status = 0;
+            prestatus = 0;
             exit(1);
         }
-
 	regfree(&regex);
+
+    int start, end, i;
+    if(prestatus == 1){
+        start = strcspn(command, "[");
+        //end = strcspn(command, "]");
+        for (i=0; &(command[i]); command[i]==';' ? i++ : *command++);
+
+    }else{
+        status=0;
+    }
     return status;
 }
 

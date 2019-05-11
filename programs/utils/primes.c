@@ -1,4 +1,4 @@
-#include "definitions.h"
+#include "/home/mateus/ban/math/programs/utils/definitions.h"
 
 Natural generate_primes(Natural qtty_primes, Natural * pt_primes)
 {
@@ -41,14 +41,26 @@ Natural lowest_common_multiple(Natural const *numbers_){
     return lcm;
 }
 
+// Return the number of fibonacci numbers generated correctly, i. e., that it didnt 'overflow'.
+// See https://stackoverflow.com/questions/16056758/c-c-unsigned-integer-overflow
 int generate_fibonacci(Natural const F_1, Natural const F_2, Natural *arr, int const max){
+    int qtty_correct; // Quantity of fibonacci numbers generated that does not 'overflow'.
+    int i;
     arr[0]=F_1;
     arr[1]=F_2;
 
-    for(int i=1; i<max; i++){
-        arr[i+1]=(Natural)arr[i]+arr[i-1];
+    for(i=1; i<max; i++){
+        if( arr[i] > ULLONG_MAX - arr[i-1]){ // test 'overflow'
+            break;
+        }else
+            arr[i+1]=(Natural)arr[i]+arr[i-1];
+    }
+    if( arr[i] > ULLONG_MAX - arr[i-1] ){
+        qtty_correct = i-1;
+    }else{
+        qtty_correct = i;
     }
 
-    return 0;
+    return qtty_correct;
 }
 
