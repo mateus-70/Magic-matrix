@@ -44,7 +44,7 @@
 #define RGX_NATURAL "([0-9]+)"
 #define RGX_INTEGER "([+-]?[0-9]+)"
 #define RGX_RATIONAL "([-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?)"
-#define RGX_REAL "([-+]?[0-9]+(\.[0-9]*)?)"
+#define RGX_REAL "([-+]?[0-9]+(\\.[0-9]*)?)"
 
 typedef int Bool;
 typedef unsigned long long int Natural;
@@ -139,6 +139,7 @@ int str_to_q(const char *, Q *);
 int var_qt;
 
 int generate_fibonacci();
-Natural generate_primes();
+Natural gen_primes_qtty();
+Natural gen_primes_max_value();
 Natural lowest_common_multiple();
 #endif

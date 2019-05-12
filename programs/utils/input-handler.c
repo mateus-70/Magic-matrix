@@ -183,7 +183,7 @@ int is_integer(const char *number_)
     strcpy(number, number_);
     char pattern[PATTERN_MAX_LENGTH]={};
     snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$", RGX_INTEGER);
-    reti = regcomp( &regex, , REG_EXTENDED);
+    reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
         snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
@@ -291,15 +291,18 @@ int is_real(const char *number_)
 
 int is_matrix(const char *str_)
 {
-    int reti, prestatus; //return integer
+    int status, prestatus;
+    int reti; //return integer
     char error_message[ERROR_MESSAGE_LENGTH]={};
     char str[STR_MAX_MATRIX];
 
     regex_t regex;
     
     strcpy(str, str_);
-    char pattern[PATTERN_MAX_LENGTH]={};
-    snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$", "\[.*\]");
+    char pattern[PATTERN_MAX_LENGTH]={}; 
+    char rgx_real_matrix[PATTERN_MAX_LENGTH]; // Will not be utilized with regcomp, but will be part of 'pattern'.
+    snprintf(rgx_real_matrix, PATTERN_MAX_LENGTH, "\\[(([[:blank:]]+%s[[:blank:]]+;)+[[:blank:]]+\\]", RGX_REAL);
+    snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$",rgx_real_matrix);
     reti = regcomp( &regex, pattern, REG_EXTENDED);
     if(reti)
     {
@@ -323,11 +326,11 @@ int is_matrix(const char *str_)
         }
 	regfree(&regex);
 
-    int start, end, i;
+    char *start, end;
+    int i;
     if(prestatus == 1){
-        start = strcspn(command, "[");
-        //end = strcspn(command, "]");
-        for (i=0; &(command[i]); command[i]==';' ? i++ : *command++);
+        start = strcspn(str, "[")+1;
+        for (i=0; str[i+1]; str[i]==';' ? i++ : *str++);
 
     }else{
         status=0;
@@ -396,45 +399,46 @@ int evaluate_expression(){
 
 
 int wantto_insert(const char* str_){
-    int reti, status; //return integer
-    regex_t regex;
-    char error_message[ERROR_MESSAGE_LENGTH];
-    char str[COMMAND_LENGTH];
-    strcpy(str, str_);
-    rgx_type = "(naturals?|N|integers?|Z|rationals?|Q|reals?|R|matri(x|ces))";
-    rgx_varname = "[a-zA-Z_][a-zA-Z0-9_]*";
-    rgx_isnatural = "[0-9]+";
-    rgx_isinteger = "(+|-)?[0-9]+";
-    rgx_isrational = "[-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?";
-    rgx_isreal = "^[-+]?[0-9]+(.[0-9]*)?$";
-    
-    rgx_ismatrix = "";
-    char pattern[300];
-    snprintf("","^[[:blank:]]*insert[[:blank:]]+(", rgx_type, "?[[:blank:]])?", rgx_varname, "(=)$");
-    reti = regcomp( &regex, pattern, REG_EXTENDED);
-    if(reti)
-    {
-        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
-        printf(error_message);
-        exit(1);
-    }
-
-    reti = regexec(&regex, str, 0, NULL, 0);
-    if(!reti)
-        status = 1;
-    else
-        if(reti == REG_NOMATCH)
-            status = 0;
-        else
-        {
-            regerror(reti, &regex, str, sizeof(str));
-            fprintf(stderr, "Regex match failed: %s\n", str);
-            status = 0;
-            exit(1);
-        }
-
-	regfree(&regex);
-    return status;
+//    int reti, status; //return integer
+//    regex_t regex;
+//    char error_message[ERROR_MESSAGE_LENGTH];
+//    char str[COMMAND_LENGTH];
+//    strcpy(str, str_);
+//    rgx_type = "(naturals?|N|integers?|Z|rationals?|Q|reals?|R|matri(x|ces))";
+//    rgx_varname = "[a-zA-Z_][a-zA-Z0-9_]*";
+//    rgx_isnatural = "[0-9]+";
+//    rgx_isinteger = "(+|-)?[0-9]+";
+//    rgx_isrational = "[-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?";
+//    rgx_isreal = "^[-+]?[0-9]+(.[0-9]*)?$";
+//    
+//    rgx_ismatrix = "";
+//    char pattern[300];
+//    snprintf("","^[[:blank:]]*insert[[:blank:]]+(", rgx_type, "?[[:blank:]])?", rgx_varname, "(=)$");
+//    reti = regcomp( &regex, pattern, REG_EXTENDED);
+//    if(reti)
+//    {
+//        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+//        printf(error_message);
+//        exit(1);
+//    }
+//
+//    reti = regexec(&regex, str, 0, NULL, 0);
+//    if(!reti)
+//        status = 1;
+//    else
+//        if(reti == REG_NOMATCH)
+//            status = 0;
+//        else
+//        {
+//            regerror(reti, &regex, str, sizeof(str));
+//            fprintf(stderr, "Regex match failed: %s\n", str);
+//            status = 0;
+//            exit(1);
+//        }
+//
+//	regfree(&regex);
+//    return status;
+    return 0;
 }
 
 int wantto_list(const char* str_){
