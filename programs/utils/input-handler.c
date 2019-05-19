@@ -32,6 +32,7 @@ char input_handler(const char * command_){
         list_user_variables();
     }else if(wantto_help(command_)){
         puts("Help, Match.\n\n");
+        gauss_pivotation(variables[0]);
         state='H';
     }else if(wantto_insert(command_)){
         puts("Insert, Match.\n\n");
@@ -289,54 +290,55 @@ int is_real(const char *number_)
 }
 
 
-int is_matrix(const char *str_)
-{
-    int status, prestatus;
-    int reti; //return integer
-    char error_message[ERROR_MESSAGE_LENGTH]={};
-    char str[STR_MAX_MATRIX];
-
-    regex_t regex;
-    
-    strcpy(str, str_);
-    char pattern[PATTERN_MAX_LENGTH]={}; 
-    char rgx_real_matrix[PATTERN_MAX_LENGTH]; // Will not be utilized with regcomp, but will be part of 'pattern'.
-    snprintf(rgx_real_matrix, PATTERN_MAX_LENGTH, "\\[(([[:blank:]]+%s[[:blank:]]+;)+[[:blank:]]+\\]", RGX_REAL);
-    snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$",rgx_real_matrix);
-    reti = regcomp( &regex, pattern, REG_EXTENDED);
-    if(reti)
-    {
-        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
-        printf(error_message);
-        exit(1);
-    }
-
-    reti = regexec(&regex, str, 0, NULL, 0);
-    if(!reti)
-        prestatus = 1;
-    else
-        if(reti == REG_NOMATCH)
-            prestatus = 0;
-        else
-        {
-            regerror(reti, &regex, str, sizeof(str));
-            fprintf(stderr, "Regex match failed: %s\n", str);
-            prestatus = 0;
-            exit(1);
-        }
-	regfree(&regex);
-
-    char *start, end;
-    int i;
-    if(prestatus == 1){
-        start = strcspn(str, "[")+1;
-        for (i=0; str[i+1]; str[i]==';' ? i++ : *str++);
-
-    }else{
-        status=0;
-    }
-    return status;
-}
+int is_matrix(const char *str_){return 0;}
+//int is_matrix(const char *str_)
+//{
+//    int status, prestatus;
+//    int reti; //return integer
+//    char error_message[ERROR_MESSAGE_LENGTH]={};
+//    char str[STR_MAX_MATRIX];
+//
+//    regex_t regex;
+//    
+//    strcpy(str, str_);
+//    char pattern[PATTERN_MAX_LENGTH]={}; 
+//    char rgx_real_matrix[PATTERN_MAX_LENGTH]; // Will not be utilized with regcomp, but will be part of 'pattern'.
+//    snprintf(rgx_real_matrix, PATTERN_MAX_LENGTH, "\\[(([[:blank:]]+%s[[:blank:]]+;)+[[:blank:]]+\\]", RGX_REAL);
+//    snprintf(pattern, PATTERN_MAX_LENGTH, "^[[:blank:]]*%s[[:blank:]]*$",rgx_real_matrix);
+//    reti = regcomp( &regex, pattern, REG_EXTENDED);
+//    if(reti)
+//    {
+//        snprintf(error_message, ERROR_MESSAGE_LENGTH, "%s%s%s", "Failure (in ", __FUNCTION__, "): Cannot compile regular expression!\n\n");
+//        printf(error_message);
+//        exit(1);
+//    }
+//
+//    reti = regexec(&regex, str, 0, NULL, 0);
+//    if(!reti)
+//        prestatus = 1;
+//    else
+//        if(reti == REG_NOMATCH)
+//            prestatus = 0;
+//        else
+//        {
+//            regerror(reti, &regex, str, sizeof(str));
+//            fprintf(stderr, "Regex match failed: %s\n", str);
+//            prestatus = 0;
+//            exit(1);
+//        }
+//	regfree(&regex);
+//
+//    char *start, end;
+//    int i;
+//    if(prestatus == 1){
+//        start = strcspn(str, "[")+1;
+//        for (i=0; str[i+1]; str[i]==';' ? i++ : *str++);
+//
+//    }else{
+//        status=0;
+//    }
+//    return status;
+//}
 
 
 int is_varname(const char *str_)

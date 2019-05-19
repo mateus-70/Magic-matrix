@@ -89,39 +89,107 @@
 //     return 0;
 // }
 // 
-// // funcao de back-end
-// // escalona uma matrix
-// struct MATRIX echelon_mat(struct MATRIX mat){
-//     struct MATRIX echeloned;
-//     Q q;
-//     int i, j, x, y;
-// 
-//     // copia os dados para a echeloned
-//     echeloned.rows = mat.rows;
-//     echeloned.columns = mat.columns;
-//     for(i=0; i < mat.rows; i++ )
-//         for(j=0; j<mat.columns; j++)
-//             echeloned.matrix[i][j] = mat.matrix[i][j];
-// 
-//     // Escalona a matrix 'echeloned'
-//     for(i=0; i+1<echeloned.rows; i++){
-//         for(x=1; x+i < echeloned.rows; x++){ 
-//             if(echeloned.matrix[i+x][i].numerator == 0 ) continue; 
-//             // achar o valor para multiplicar cada elemento da linha para subtrair
-//             q = q_quoc(echeloned.matrix[i+x][i], echeloned.matrix[i][i]); 
-//             q.numerator *= -1;
-//             add_line(q, &echeloned, i+x, i);
-//             /*
-//             for(y=0; y<echeloned.columns; y++){ 
-//                 echeloned.matrix[i+x][y] = q_simplify(\
-//                     q_add(echeloned.matrix[i+x][y], \
-//                     q_mult(q, echeloned.matrix[i][y]) ) );
-// 
-//             }*/
-//         }
-//     }
-//     return echeloned;
-// }
+
+ // funcao de back-end
+ // escalona uma matrix
+var gauss_pivotation(var variable){
+    strcpy( variable.data_type, "QM3x4");
+    variable.value.Q_m[0][0].numerator = 3;
+    variable.value.Q_m[0][0].denominator= 1;
+
+    variable.value.Q_m[1][0].numerator = 1;
+    variable.value.Q_m[1][0].denominator= 1;
+
+    variable.value.Q_m[2][0].numerator = 4;
+    variable.value.Q_m[2][0].denominator = 1;
+
+    variable.value.Q_m[0][1].numerator = -4;
+    variable.value.Q_m[0][1].denominator = 1;
+
+    variable.value.Q_m[1][1].numerator = 2;
+    variable.value.Q_m[1][1].denominator = 1;
+
+    variable.value.Q_m[2][1].numerator = 0;
+    variable.value.Q_m[2][1].denominator = 1;
+
+    variable.value.Q_m[0][2].numerator = 1;
+    variable.value.Q_m[0][2].denominator = 1;
+
+    variable.value.Q_m[1][2].numerator = 2;
+    variable.value.Q_m[1][2].denominator = 1;
+
+    variable.value.Q_m[2][2].numerator = -3;
+    variable.value.Q_m[2][2].denominator = 1;
+
+    variable.value.Q_m[0][3].numerator = 9;
+    variable.value.Q_m[0][3].denominator = 1;
+
+    variable.value.Q_m[1][3].numerator = 3;
+    variable.value.Q_m[1][3].denominator = 1;
+
+    variable.value.Q_m[2][3].numerator = -2;
+    variable.value.Q_m[2][3].denominator = 1;
+    //--------------------------------------------------
+    Q q;
+    int i, j, x, y;
+    char number_type, special_type;
+    int dim1, dim2;
+    //printf("variable.data_type = %s \n\n\n", variable.data_type);
+    sscanf(variable.data_type, "%c%c%dx%d", &number_type, &special_type, &dim1, &dim2);
+    printf("The data are: number_type=%c, special=%c, dim1=%d, dim2=%d\n\n", number_type, special_type, dim1, dim2);
+    if(number_type == 'Q'){
+        printf("Inside level 1\n\n");
+
+        if(special_type == 'M'){
+            if(dim1 > 0 && dim2 > 0){
+                // Echelon the matrix inside variable'
+                for(i=0; i+1<dim1; i++){
+                    for(x=1; x+i < dim1; x++){ 
+                        // print 'variable'
+                        for(int l=0; l<dim1; l++){
+                            for(int o=0; o< dim2; o++){
+                                printf("%d/%d\t", variable.value.Q_m[l][o].numerator, variable.value.Q_m[l][o].denominator);
+                            }
+                            putchar('\n');
+                        }
+                        printf("\n\n");
+                        if(variable.value.Q_m[i+x][i].numerator == 0 ) continue; 
+                        // achar o valor para multiplicar cada elemento da linha para subtrair
+                        q = q_quoc(variable.value.Q_m[i+x][i], variable.value.Q_m[i][i]); 
+                        q.numerator *= -1;
+
+                        for(y=0; y<dim2; y++){ 
+                            variable.value.Q_m[i+x][y] = 
+                                q_simplify(\
+                                    q_add(variable.value.Q_m[i+x][y], \
+                                        q_mult(q, variable.value.Q_m[i][y]) ) );
+            
+                        }
+                    }
+                }
+            }else {printf("Error dim invalid"); exit(1);}
+        }else{printf("Error, that isnot matrix\n\n");exit(1);}
+    }else{printf("Error, that isnot Q\n\n");exit(1);}
+    
+//    // Simplifiyng the last row of the matrix.
+//    {
+//        int i=dim1-1;
+//        int j=0;
+//        while(j<dim2){
+//            variable.value.Q_m[i][j] = q_simplify(variable.value.Q_m[i][j]);
+//            j++;
+//        }
+//    } 
+    // print 'variable'
+    for(int l=0; l<dim1; l++){
+        for(int o=0; o< dim2; o++){
+            printf("%d/%d\t", variable.value.Q_m[l][o].numerator, variable.value.Q_m[l][o].denominator);
+        }
+        putchar('\n');
+    }
+
+    return variable;
+}
 // 
 // // Escalona e reduz uma matrix
 // // o escalonamento é feito por outra funcao

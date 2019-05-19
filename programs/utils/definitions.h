@@ -46,6 +46,8 @@
 #define RGX_RATIONAL "([-+]?[0-9]+(/[0-9]*[1-9][0-9]*)?)"
 #define RGX_REAL "([-+]?[0-9]+(\\.[0-9]*)?)"
 
+#define ABS(my_val) ((my_val) < 0) ? -(my_val) : (my_val)
+
 typedef int Bool;
 typedef unsigned long long int Natural;
 typedef long double Real;
@@ -66,21 +68,21 @@ typedef struct {
 typedef struct 
 {
     char name[VARIABLE_MAX_NAME];
-    char data_type[MAX_DATA_TYPE];
-    int status; 
-    // '1' for avaiable
-    // '0' for not initialized
-    // '-1' for deleted
-    // '-2' for blocked
+    char data_type[MAX_DATA_TYPE]; //RMnxn ou RMnnxn RMnnnxnnnn
+    char status; 
+    // 'a' for avaiable
+    // 'n' for non-initialized
+    // 'd' for deleted
+    // 'b' for blocked
     union 
     {
         Natural n;
         int z;
         Q q;
         Real r;
-        Real M[MAX_MATRIX_ROWS][MAX_MATRIX_COWS];
+        Q Q_m[MAX_MATRIX_ROWS][MAX_MATRIX_COWS];
+        Real R_m[MAX_MATRIX_ROWS][MAX_MATRIX_COWS];
     } value;
-    // --void *pt;
 } var;
 // Structs declaration - End
 
@@ -124,7 +126,7 @@ int edit_matrix();
 int delete_matrix();
 int transpose_matrix();
 int matrix_product();
-int echelon_matrix();
+var gauss_pivotation();
 int wantto_help();
 int wantto_insert();
 int wantto_list();

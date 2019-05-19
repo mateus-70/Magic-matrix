@@ -12,6 +12,7 @@
 Q q_simplify(Q rational){
     int i, menor;
 
+    //printf("inicio rational.numerator=%d, denominator=%d.\n", rational.numerator, rational.denominator);
     if (rational.denominator == 0){
         puts("\n\n\nsimplifica_q: DIVISAO POR ZERO\n\n\n\n");
         exit(1);
@@ -24,10 +25,10 @@ Q q_simplify(Q rational){
             rational.numerator *= -1;
         }
     
-        if(rational.numerator < rational.denominator)
-            menor = rational.numerator;
+        if(ABS(rational.numerator) < ABS(rational.denominator))
+            menor = ABS(rational.numerator);
         else
-            menor = rational.denominator;
+            menor = ABS(rational.denominator);
         
         // É provavel que o menor tenha menos divisores, por isso usamos o menor deles.
         // sqrt(menor + 1) porque não quero enfrentar problemas com arredondamentos com float.
@@ -47,6 +48,7 @@ Q q_simplify(Q rational){
         }
     }
 
+    //printf("final rational.numerator=%d, denominator=%d.\n", rational.numerator, rational.denominator);
     return rational;
 }
 
