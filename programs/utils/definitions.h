@@ -126,7 +126,7 @@ int edit_matrix();
 int delete_matrix();
 int transpose_matrix();
 int matrix_product();
-var gauss_pivotation();
+var pivotation();
 int wantto_help();
 int wantto_insert();
 int wantto_list();

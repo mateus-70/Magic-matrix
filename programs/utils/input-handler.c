@@ -32,7 +32,8 @@ char input_handler(const char * command_){
         list_user_variables();
     }else if(wantto_help(command_)){
         puts("Help, Match.\n\n");
-        gauss_pivotation(variables[0]);
+        var var1;
+        var1 = pivotation(variables[0]);
         state='H';
     }else if(wantto_insert(command_)){
         puts("Insert, Match.\n\n");

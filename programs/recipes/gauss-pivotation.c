@@ -1,84 +1,80 @@
-//#include <stdio.h>
-//#include <stdlib.h>
-//
-//int main (){
-    //double matrix[5][5];
-    //int i,j,k;
-    //double mult;
-//
-    //k=1;
-    //for (i=0;i<5;i++){
-	//for (j=0; j<5; j++){
-	    //matrix=[i][j]=k;
-	    //k++;
-	//}
-    //}
-//
-    //for(){
-	//mult = matrix[][]
-	//matrix[i][j] = matrix[i][j] - mult *matrix[i-1][j]
-    //}
-//
-//
-//return 0;
-//}
-//
-#include<stdio.h>
-int main()
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+ 
+#define mat_elem(a, y, x, n) (a + ((y) * (n) + (x)))
+ 
+void swap_row(double *a, double *b, int r1, int r2, int n)
 {
-	int i,j,k,n,a,b;
-	float A[20][20],c,x[10],sum=0.0;
-	printf("\nEnter the order of matrix: ");
-	scanf("%d",&n);
-	printf("\nEnter the elements of augmented matrix row-wise:\n\n");
-	
-    for(i=1; i<=n; i++)
-	{
-		for(j=1; j<=(n+1); j++)
-	    {
-		    printf("A[%d][%d] : ", i,j);
-			scanf("%f",&A[i][j]);
+	double tmp, *p1, *p2;
+	int i;
+ 
+	if (r1 == r2) return;
+	for (i = 0; i < n; i++) {
+		p1 = mat_elem(a, r1, i, n);
+		p2 = mat_elem(a, r2, i, n);
+		tmp = *p1, *p1 = *p2, *p2 = tmp;
+	}
+	tmp = b[r1], b[r1] = b[r2], b[r2] = tmp;
+}
+ 
+void gauss_eliminate(double *a, double *b, double *x, int n)
+{
+#define A(y, x) (*mat_elem(a, y, x, n))
+	int i, j, col, row, max_row,dia;
+	double max, tmp;
+ 
+	for (dia = 0; dia < n; dia++) {
+		max_row = dia, max = A(dia, dia);
+ 
+		for (row = dia + 1; row < n; row++)
+			if ((tmp = fabs(A(row, dia))) > max)
+				max_row = row, max = tmp;
+ 
+		swap_row(a, b, dia, max_row, n);
+ 
+		for (row = dia + 1; row < n; row++) {
+			tmp = A(row, dia) / A(dia, dia);
+			for (col = dia+1; col < n; col++)
+				A(row, col) -= tmp * A(dia, col);
+			A(row, dia) = 0;
+			b[row] -= tmp * b[dia];
 		}
 	}
-
-	for(j=1; j<=n; j++) /* loop for the generation of upper triangular matrix*/
-	{
-	    for(i=1; i<=n; i++)
-		{
-			if(i>j)
-	   		{
-			    c=A[i][j]/A[j][j];
-			    for(k=1; k<=n+1; k++)
-	    		{
-					A[i][k]=A[i][k]-c*A[j][k];
-				}
-			}
-		}
+	for (row = n - 1; row >= 0; row--) {
+		tmp = b[row];
+		for (j = n - 1; j > row; j--)
+			tmp -= x[j] * A(row, j);
+		x[row] = tmp / A(row, row);
 	}
-	
-    for(a=1; a<=n; a++){
-        for(b=1; b<=n; b++){
-            printf("%f ", A[a][b]);
-        }
-        putchar('\n');
-    }
-
-    x[n]=A[n][n+1]/A[n][n];
-	
-    /* this loop is for backward substitution*/
-	for(i=n-1; i>=1; i--)
-	{
-	    sum=0;
-	    for(j=i+1; j<=n; j++)
-		{
-			sum=sum+A[i][j]*x[j];
-		}
-	    x[i]=(A[i][n+1]-sum)/A[i][i];
-	}
-	
-    printf("\nThe solution is: \n");
-	for(i=1; i<=n; i++)
-	    printf("\nx%d=%f\t",i,x[i]); /* x1, x2, x3 are the required solutions*/
-	
-    return(0);
+#undef A
+}
+ 
+int main(void)
+{
+//	double a[] = {
+//		1.00, 0.00, 0.00,  0.00,  0.00, 0.00,
+//		1.00, 0.63, 0.39,  0.25,  0.16, 0.10,
+//		1.00, 1.26, 1.58,  1.98,  2.49, 3.13,
+//		1.00, 1.88, 3.55,  6.70, 12.62, 23.80,
+//		1.00, 2.51, 6.32, 15.88, 39.90, 100.28,
+//		1.00, 3.14, 9.87, 31.01, 97.41, 306.02
+//	};
+//	double b[] = { -0.01, 0.61, 0.91, 0.99, 0.60, 0.02 };
+//	double x[6];
+    double a[] = {
+        3, -4, 1,
+        1, 2, 2,
+        4, 0, -3
+    };
+    double b[] = {9, 3, -2};
+	int i;
+    double x[3];
+ 
+	gauss_eliminate(a, b, x, 3);
+ 
+	for (i = 0; i < 3; i++)
+		printf("%g\n", x[i]);
+ 
+	return 0;
 }

@@ -92,7 +92,7 @@
 
  // funcao de back-end
  // escalona uma matrix
-var gauss_pivotation(var variable){
+var pivotation(var variable){
     strcpy( variable.data_type, "QM3x4");
     variable.value.Q_m[0][0].numerator = 3;
     variable.value.Q_m[0][0].denominator= 1;
@@ -147,9 +147,8 @@ var gauss_pivotation(var variable){
                     for(x=1; x+i < dim1; x++){ 
                         // print 'variable'
                         for(int l=0; l<dim1; l++){
-                            for(int o=0; o< dim2; o++){
+                            for(int o=0; o< dim2; o++)
                                 printf("%d/%d\t", variable.value.Q_m[l][o].numerator, variable.value.Q_m[l][o].denominator);
-                            }
                             putchar('\n');
                         }
                         printf("\n\n");
@@ -171,22 +170,17 @@ var gauss_pivotation(var variable){
         }else{printf("Error, that isnot matrix\n\n");exit(1);}
     }else{printf("Error, that isnot Q\n\n");exit(1);}
     
-//    // Simplifiyng the last row of the matrix.
-//    {
-//        int i=dim1-1;
-//        int j=0;
-//        while(j<dim2){
-//            variable.value.Q_m[i][j] = q_simplify(variable.value.Q_m[i][j]);
-//            j++;
-//        }
-//    } 
-    // print 'variable'
+    // print 'variable' in row echelon format
     for(int l=0; l<dim1; l++){
         for(int o=0; o< dim2; o++){
             printf("%d/%d\t", variable.value.Q_m[l][o].numerator, variable.value.Q_m[l][o].denominator);
         }
         putchar('\n');
     }
+
+    Q x[3];
+    for(int i=dim1-1; i >= 0; i--)
+        for(int j=dim2-2; j >= 0; j--)
 
     return variable;
 }
