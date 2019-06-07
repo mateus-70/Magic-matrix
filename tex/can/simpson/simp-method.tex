@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+
+\begin{document}
+    Vamos considerar a parábola genérica $y = ax^2 + bx + c$.
+
+Here is a sketch with the picture on the interval $[x_{i-1},x_{i+1}]$ (Assume that the points $x_i$ are evenly distributed in the interval $[a,b]$):
+
+![enter image description here][1]
+
+$$p_i(x)=f(x_{i-1})\frac{(x-x_i)(x-x_{i+1})}{(x_{i-1}-x_i)(x_{i-1}-x_{i+1})}+f(x_i)\frac{(x-x_{i-1})(x-x_{i+1})}{(x_{i}-x_{i-1})(x_{i}-x_{i+1})}+f(x_{i+1})\frac{(x-x_{i-1})(x-x_{i})}{(x_{i+1}-x_{i-1})(x_{i+1}-x_{i})}$$
+
+Integrating $p_i(x)$ gives
+$$\int^{x_{i+1}}_{x_{i-1}}\,dx=\frac{\Delta x}{3}\left[f(x_{i-1})+4f(x_i)+f(x_{i+1})\right]$$
+
+Now if the points are from $x_0$ to $x_{2n}$, then you add the $n$ integrals together:
+$$\int_{x_0}^{x_2}+...+\int_{x_{2n-2}}^{x_{2n}}=\frac{\Delta x}{3}\left[f(x_{0})+4f(x_1)+f(x_{2})+f(x_2)+4f(x_3)+f(x_4)+f(x_4)+4f(x_5)+f(x_6)+...+f(x_{2n-2})+4f(x_{2n-1})+f(x_{2n}))\right]\\
+=\frac{\Delta x}{3}\left[f(x_0)+f(x_{2n})+2\sum_{k=1}^{n-1} f(x_{2k})+4\sum_{k=1}^n f(x_{2k-1})\right]$$
+
+I have a different form because I used $0,...,2n$.
+
+**Edit**: There is another way to derive the two-subinterval integral without using the $p_i(x)$.
+
+Let the interval be $[-h,h]$. We represent the curve using a polynomial $ax^2+bx+c$. Then the integral is
+$$\int^h_{-h}ax^2+bx+c\,dx=2\int^h_0 ax^2+c\,dx=\frac{h}{3}(2ah^2+6c)$$
+
+You can see that
+$$f(-h)=ah^2-bh+c\\
+f(0)=c\\
+f(h)=ah^2+bh+c$$
+
+Some algebraic manipulating gives you
+$$f(-h)+4f(0)+f(h)=\frac{h}{3}(2ah^2+6c)$$
+
+This can of course be shifted to get similar formulas on other subintervals. Then you can add them together to get the composite formula as above.
+
+  [1]: http://i.stack.imgur.com/Y8twg.png
+\end{document}
