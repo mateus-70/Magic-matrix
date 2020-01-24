@@ -1,0 +1,34 @@
+var todos_pontos = ggbApplet.getAllObjectNames("Point");
+var todos_angulos_planetas = ["anguloTerra"];
+
+for(var i of todos_pontos){
+  for(var j of todos_angulos_planetas){
+    if(todos_pontos[i] == todos_angulos_planetas[j]){
+ //     var xml = ggbApplet.getXML(todos_angulos_planetas[j]) + "";      
+ //     var ggbCode = "if(" + todos_pontos[i] + " == 360){ " + todos_angulos_planetas[j] + " = 0 } ";
+ //     code = "<javascript val='" + ggbCode + "' /> </element>";
+//      xml = xml.replace("/<\/element>/", code);
+     xml = xml.replace("/<\/element/", "<\/element>");
+       ggbApplet.evalXML(xml);
+      
+    }
+  }
+}
+
+forEac
+
+
+var todos_angulos_planetas = ["anguloTerra"];
+
+for(const angulo_planeta of todos_angulos_planetas){
+  var angulo_planeta_array = document.querySelectorAll('[label="' + angulo_planeta + '"]');
+  var js = document.creatElement("javascript");
+  var ggbscript = document.createElement("ggbscript");
+  var ggbcode = document.createTextNode( "if(" + angulo_planeta + " == 360){ " + angulo_planeta + " = 0 }" );
+  ggbscript.appendChild(ggbcode);
+  js.appendChild(ggbscript);
+  angulo_planeta_array[0].appendChild(js);
+  
+  
+  
+}

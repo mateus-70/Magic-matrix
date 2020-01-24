@@ -1,0 +1,16 @@
+Delete(O)
+Delete(i)
+Delete(j)
+Delete(k)
+
+Delete(raioSol)
+
+Delete(distTerra)
+Delete(raioTerra)
+Delete(anguloTerra)
+Delete(raioOrbitaTerra)
+
+#Delete()
+#Delete()
+#Delete()
+#Delete()

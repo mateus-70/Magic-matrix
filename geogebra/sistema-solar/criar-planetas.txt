@@ -1,0 +1,21 @@
+# Auxiliares
+O: (0,0)
+i: (1,0,0)
+j: (0,1,0)
+k: (0,0,1)
+
+# Tamanhos e distancias dos planetas
+raioSol = 5
+raioOrbitaTerra = 10
+raioTerra = 3
+
+# sol # no centro
+sol: x^2+y^2+z^2 = raioSol^2
+
+# Terra
+orbitaTerra = Circle(O, raioOrbitaTerra, zAxis)
+anguloTerra = Slider(0, 360, 1)
+vetorOTerra = vector((raioOrbitaTerra * cos(anguloTerra°) , raioOrbitaTerra*sin(anguloTerra°), 0))
+centroTerra = Point(O, vetorOTerra)
+terra: (x-x(centroTerra))^2 + (y-y(centroTerra))^2 + z^2 = raioTerra^2
+SetColor(terra, "#0066CC")
