@@ -105,6 +105,7 @@ Q q_simplify(Q);
 int find_matrix(); // search for a matrix by name
 int edit_matrix(); // edit the entrances of a matrix
 int dump_mat(); // dumb matrix info at exit // what does this really mean?
+//int q_print(const Q)
 int add_line(); 
 int is_natural();
 int is_integer();

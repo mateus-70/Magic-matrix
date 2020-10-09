@@ -1,0 +1,90 @@
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+
+%\input{/home/mateus/ban/funcoes.tex}
+%\input{/home/mateus/ban/trig.tex}
+
+% plain definition remark em theoremstyle
+    \theoremstyle{definition}
+    \newtheorem{definition}{Definição}
+
+    \theoremstyle{remark}
+    \newtheorem*{remark}{Nota}
+
+    \theoremstyle{plain}
+    \newtheorem{theorem}{Teorema}
+
+    \theoremstyle{plain}
+    \newtheorem{corolary}{Corolário}
+
+    \theoremstyle{plain}
+    \newtheorem{lemma}{Lema}
+
+\begin{document}
+    Juros simples
+    Para o cálculo de juros simples com uma iteração de tempo usamos a fórmula:
+    $$J = P \cdot i$$, onde \\
+    J: é o juros, o valor que o dinheiro aplicado "rendeu".
+    P: é o dinheiro aplicado
+    i: é a taxa de juros (no mesmo tempo de iteração da aplicação).
+    Exemplo: Aplicar um capital de $R\$ 1000 $ com uma taxa de juros de $1\%$ ao mês (ou a.m.) por $1$ mês.
+    Exemplo: Aplicar um capital de $R\$ 1000 $ com uma taxa de juros de $10\%$ ao ano (ou a.a.) por $1$ ano.
+    
+    Para calcular quanto de juros é gerado por $n$ iterações 
+    de tempo modificamos a fórmula e ficamos com:
+    $$J = P \cdot i \cdot n$$
+    Uma característica dos juros simples é que cada iteração o valor gerado de juros é o mesmo. 
+    Consideremos o caso a seguir.
+
+    Exemplo: Aplicar um capital de $R\$ 1000 $ com uma taxa de juros de $10\%$aa por $5$ anos.
+    No primeiro ano temos $J_1 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
+    No segundo ano temos $J_2 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
+    No terceiro ano temos $J_3 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
+    No quarto ano temos $J_4 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
+    No quinto ano temos $J_5 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
+    Onde $J_k$ representa o juro gerado na iteração $k$ (neste caso em cada ano).
+
+    Após a aplicação do capital, no ato da retirada não retiramos
+    somente o juros gerado, mas também o principal aplicado.
+    \begin{example}
+        Ao aplicar $R\$ 500$ com taxa de $1\%$ am, por $12$ meses temos $J = R\$ 500 \cdot 0,01 \cdot 12 = R\$ 60 $. \\
+        Complicado ao final do período poder retirar somente $R\$ 60$, não? Mas pode ser 
+        retirado também o valor aplicado, neste caso $BRL 500$.
+    \end{example}
+    \begin{definition}{Montante}
+        É o valor retirado no vencimento da aplicação. É calculado pela fórmula: $M = J + P$.
+    \end{definition}
+    \begin{definition}{Vencimento}
+        É a data mínima que o montante poderá ser retirado.
+    \end{definition}
+    Isso quer dizer que se uma aplicação tem vencimento em $1$ ano, ele não poderá^1 ser retirado antes disso. \\
+    ^1: Varia de acordo com a aplicação escolhida. Algumas têm período de carência, outras deixam retirar 
+    parte do valor que seria obtido no vencimento. Alguns títulos podem ser vendidos no mercado secundário.
+    
+    $$This was intended to have a lot of exercises! LMFAO $$
+
+    %% NEW CHAPTER %%
+
+    Juro composto
+    Nos juros simples cada iteração gera o mesmo valor que todas as outras. 
+    No juro composto isso não acontece, porque cada iteração é calculada com o montante da iteração anterior 
+    (exeto na primeiríssima vez que é calculado imediatamente com o principal).
+    \begin{example}
+        Vejamos uma tabela com o juro gerado por uma aplicação de $BRL 1000$ com uma taxa de $10\%am$ por $12$ meses.
+    \end{example}
+    Como é possível notar, cada nova iteração gera um juro levemente superior à iteração imediatamente anterior.
+    Desta forma, calculamos o juro composto assim:
+    $M_1 = P + P \cdot i = P(1 + i)$ \\
+    $M_2 = M_1 + M_1 \cdot i = M_1 (1 + i) = P(1+i)(1+i)$ \\
+    $M_3 = M_2 + M_2 \cdot i = M_2 (1 + i) = P(1+i)(1+i)(1+i)$ \\
+    ...
+    $M_n = M_{n-1} + M_{n-1} \cdot i = M_{n-1}(1 + i) = P(1+i)^n$ \\
+    Portanto, para calcular quanto é o montante de uma aplicação usamos a fórmula: $M = P (1+i)^n$
+    
+\end{document}

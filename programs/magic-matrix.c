@@ -17,13 +17,17 @@
 
 int var_qt=0;
 
+void clear_screen(void){
+    int i=0;
+    while(i++ < 100)
+        putchar('\n');
+}
 
 int main(){
     char command[COMMAND_LENGTH]; 
     int quit, valid_command;
-
-    system("clear");
-    puts("Welcommen\n\n");
+    clear_screen();
+    puts("Magic Matrix\n\n");
     //if(is_rational("-2"))puts("it works");else puts("TOO BAD");
     do{
         printf("\nCommand: ");

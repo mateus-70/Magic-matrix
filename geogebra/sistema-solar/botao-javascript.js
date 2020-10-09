@@ -1,3 +1,4 @@
+/*
 var todos_pontos = ggbApplet.getAllObjectNames("Point");
 var todos_angulos_planetas = ["anguloTerra"];
 
@@ -16,7 +17,7 @@ for(var i of todos_pontos){
 }
 
 forEac
-
+*/
 
 var todos_angulos_planetas = ["anguloTerra"];
 
@@ -32,3 +33,24 @@ for(const angulo_planeta of todos_angulos_planetas){
   
   
 }
+
+ggbApplet.evalCommand("B = (1,0)");
+// var js = document.createElement("javascript");
+// js.setAttribute("val", "alert();" );
+// ggbApplet.evalXML(js);
+
+var b_point = ggbApplet.getXML("B");
+// b_point.getElementsByTagName("javascript");
+var row_b = b_point.split("\n");
+var qtde_linhas = row_b.length;
+var found = false;
+for(var i=0; i < qtde_linhas; i++){
+  if (row_b.includes("<javascript"){
+    found = true;
+    row_b.splice(i, 1);
+    break;
+  }
+}
+var newcode = "<javascript val=''>";
+row_b.push(newcode);
+ggbApplet.evalXML(row_b.join('\n'));

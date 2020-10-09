@@ -1,0 +1,57 @@
+\documentclass[english,ngerman,parskip=half]{scrartcl}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+%\usepackage[portuges]{babel}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage[T1]{fontenc}
+\usepackage{systeme}
+\usepackage{yfonts}
+\newcommand{\abs}[1]{\lvert #1 \rvert}
+
+%\usepackage{libertine}
+\usepackage{microtype}
+\usepackage{lmodern}
+\usepackage[brazilian]{babel}
+\usepackage{xcolor}
+
+\setcounter{MaxMatrixCols}{20}
+\usepackage{tikz}
+%\pgfplotsset{compat=newest}
+\usetikzlibrary{shapes,positioning,intersections,quotes}
+
+\theoremstyle{definition}
+\newtheorem{definition}{Definição}
+\newtheorem{theorem}{Teorema}
+\newtheorem*{remark}{Lembrete}
+
+\pagestyle{empty}
+
+\begin{document}
+\textbf{Anexo 2} - Definições e teoremas
+\begin{definition}{Círculo unitário}
+       no plano cartesiano xy, é o círculo de raio 1 cujo centro é a origem O(0,0).
+\end{definition}
+\begin{definition}{Valor do cos de um ângulo t}
+        é a primeira coordenada do ponto projetado sobre o eixo x (também chamado de eixo dos cossenos).
+\end{definition}
+\begin{definition}{Valor do sen de um ângulo t}
+    é o valor da segunda coordenada do ponto projetado sobre o eixo y (ou eixo dos senos).
+\end{definition}
+\begin{theorem}
+    $\forall t \in \mathbb{R}$, vale: $\sin^2t + \cos^2t = 1$. (Tácito que é o círculo unitário)
+\end{theorem}
+\begin{theorem}
+    Sejam $P=(a,b)$ e $Q=(c,d)$ pontos de $\mathbb{R}^2$, a distância entre eles, $d(P,Q)$ é dada por: 
+    $\sqrt{(a-c)^2 + (b-d)^2}$
+\end{theorem}
+\begin{remark}
+       Note que $(\cos t, \sin t)$ é a coordenada do ponto sobre a circunferência cujo ângulo com o $eixo\ x$ é $t$.
+\end{remark}
+%\begin{tikzpicture}
+%    \draw[step=0.2cm,gray,very thin] (-2,-2) grid (6,6);
+%    \draw (0,2) circle (3cm);
+%\end{tikzpicture}
+\end{document}
+

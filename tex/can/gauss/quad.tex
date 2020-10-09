@@ -1,0 +1,206 @@
+\documentclass{beamer}
+ 
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+%\usepackage{fontspec}
+%\setmainfont{Linux Libertine O}
+%\fontfamily{Computer Modern}\selectfont{Computer Modern Serif}
+%\newfontfamily\cmss
+ 
+\usetheme{CambridgeUS} 
+%Information to be included in the title page:
+\title{Integração numérica: Quadraturas gaussianas}
+\author[Mateus]
+{Mateus Schroeder da Silva}
+
+\institute{UDESC}
+\date{06-2019}
+ 
+%\logo{\includegraphics[height=1cm]{images/marca-udesc.png}}
+\begin{document}
+ 
+\frame{\titlepage}
+%\begin{itemize}
+    %\item $P_0(x) = 1$
+    %\item $P_1(x) = x$
+    %\item $P_2(x) = \frac{1}{2}\left( 3x^2-1 \right)$
+    %\item $P_3(x) = \frac{1}{2}\left( 5x^3-3x \right)$
+    %\item $P_4(x) = \frac{1}{8}\left( 35x^4-30x^2+3 \right)$
+    %\item $P_5(x) = \frac{1}{8}\left( 63x^5-70x^3+15x \right)$
+    %\item $P_6(x) = \frac{1}{16}\left( 231x^6-315x^4+105x^2 - 5 \right)$
+%\end{itemize}
+ 
+\begin{frame}
+\frametitle{Integração numérica: Quadraturas Gaussianas}
+The idea of Gaussian quadratures is to give ourselves the freedom to
+choose not only the weighting coefficients, but also the location of the abscissas at
+which the function is to be evaluated. They will no longer be equally spaced. Thus,
+we will have twice the number of degrees of freedom at our disposal; it will turn out
+that we can achieve Gaussian quadrature formulas whose order is, essentially, twice
+    that of the Newton-Cotes formula with the same number of function evaluations. (PRESS et al, ANO)
+\end{frame}
+
+\begin{frame}
+Does this sound too good to be true? Well, in a sense it is. The catch is a familiar
+one, which cannot be overemphasized: High order is not the same as high accuracy.
+High order translates to high accuracy only when the integrand is very smooth, in the
+sense of being “well-approximated by a polynomial.”
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Dois pontos}
+    Considerando a aproximação pelo método do trapézio $$\int_a^b {f(x)dx} \approx c_1f(a) + c_2f(b)$$ faremos uma extensão 
+    a fim de obter a quadratura gaussiana de dois pontos.
+    Suponhamos que o argumento das funções não seja pré-determinado, temos $$\int_a^b {f(x)dx} \approx c_1f(x_1) + c_2f(x_2)$$
+\end{frame}
+
+
+\begin{frame}
+\frametitle{}
+    São 4 as incógnitas: $c_1, c_2, x_1, x_2$ que são encontradas supondo que o método integre uma 
+    função de terceiro grau $f(x) = a_0 + a_1x + a_2x^2 + a_3x^3$ com erro zero. Então:
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+    $$\int_a^b {f(x)dx} = \int_a^b {\left( a_0 + a_1x + a_2x^2 + a_3x^3 \right)dx} = $$
+    $$ \left[ a_0x + a_1 \dfrac{x^2}{2} +  a_2 \dfrac{x^3}{3} +  a_3 \dfrac{x^4}{4} \right]_a^b = $$ 
+    $$a_0 (b-a) + a_1 \left( \dfrac{b^2 - a^2}{2}\right) + a_2 \left( \dfrac{b^3 - a^3}{3}\right) + a_3 \left( \dfrac{b^4 - a^4}{4}\right) = $$
+    $$ c_1 \left( a_0 + a_1x_1 + a_2x_1^2 + a_3x_1^3 \right) + c_2 \left( a_0 + a_1x_2 + a_2x_2^2 + a_3x_2^3 \right) $$
+    $$ a_0 \left( c_1 + c_2 \right) +  a_1 \left( c_1x_1 + c_2x_2 \right) + a_2 \left( c_1x_1^2 + c_2x_2^2 \right) +  a_3 \left( c_1x_1^3 + c_2x_2^3 \right) $$
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+Obtemos então o sistema não-linear
+    $$ b - a = c_1 + c_2$$
+    $$ \dfrac{b^2 - a^2}{2} = c_1x_1 + c_2x_2$$
+    $$ \dfrac{b^3 - a^3}{3} = c_1x_1^2 + c_2x_2^2$$
+    $$ \dfrac{b^4 - a^4}{4} = c_1x_1^3 + c_2x_2^3$$
+\end{frame}
+
+\begin{frame}
+\frametitle{}
+    Tal sistema tem somente uma solução, a saber:
+    $$ c_1 = \frac{b-a}{2} $$
+    $$ c_2 = \frac{b-a}{2} $$
+    $$ x_1 = \left( \frac{b-a}{2} \right) \left( -\frac{1}{\sqrt{3}}\right) + \frac{b-a}{2} $$
+    $$ x_1 = \left( \frac{b-a}{2} \right) \left( \frac{1}{\sqrt{3}}\right) + \frac{b-a}{2} $$
+\end{frame}
+
+\begin{frame}
+\frametitle{Mas e aí?}
+Esse método aproxima bem em todos os casos?
+\end{frame}
+\begin{frame}
+\frametitle{Mas e aí?}
+Não. 
+\end{frame}
+
+\begin{frame}
+\frametitle{Mas e aí?}
+O caso mostrado funciona bem quando a função que queremos integrar no intervalo limitado, fechado pode ser aproximada
+com satisfatoriedade por uma função polinomial. O caso é semelhate à quadratura Gauss-Legendre, 
+que utiliza como os pesos, os $"c_n"$ valores obtidos com os polinômios de Legendre.
+\end{frame}
+
+\begin{frame}
+\frametitle{Mas e aí?}
+Gauss-Jacobi
+    $$ f(x) = (1 - x)^\alpha (1+x)^\beta g(x), \alpha, \beta > -1$$
+    Utilizada para calcular funções com pontos singulares (locais estranhos em algumas funções, por exemplo pontos de descontinuidade ou de não-derivabilidade)
+\end{frame}
+\begin{frame}
+\frametitle{Mas e aí?}
+Chebishev-Gauss
+    Usada para calcular funções da forma:
+    $$\int_{-1}^1 {\dfrac{f(x)}{\sqrt{1-x^2}} dx}$$
+    $$\int_{-1}^1 {\sqrt{1-x^2} g(x) } dx$$
+\end{frame}
+%\begin{frame}
+%\frametitle{Integração numérica: Quadraturas Gaussianas}
+    %$$\int_a^b{f(x) dx} \approx A_0f(x_0) + \cdots + A_nf(x_n)$$
+    %onde $x_0, x_1, \cdots, x_n$ são $n + 1$ pontos distintos. Tais fórmulas são exatas
+    %para polinômios de grau $\leq 2n + 1$ e são conhecidas como quadratura Gaussiana.
+%\end{frame}
+
+
+%\frame{\titlepage}
+%\begin{frame}
+%\frametitle{}
+%Em matemática, em especial na análise numérica, existe uma grande família de algoritmos, cujo principal objetivo é aproximar o valor de uma dada integral definida de uma função sem o uso de uma expressão analítica para a sua primitiva.[1]
+%
+%Normalmente, estes métodos adotam as seguintes três fases:[2]
+%
+%Decomposição do domínio em pedaços (um intervalo contido de sub-intervalos);\\
+%Integração aproximada da função de cada pedaço;\\
+%Soma dos resultados numéricos obtidos. \\
+%\end{frame}
+%
+%\frame{\titlepage}
+%\begin{frame}
+%A necessidade de se usar a integração numérica surge de razões como:[2][3]
+%
+%nem todas as funções admitem uma primitiva de forma explícita (por exemplo, a função erro);
+%a primitiva da função é muito complicada para ser avaliada;
+%quando não se dipões de uma expressão analítica para o integrando, mas se conhece seus valores em um conjunto de pontos do domínio.
+%O método básico envolvido nesta aproximação é chamado de quadratura numérica e consiste na seguinte expressão:
+%
+%$${\displaystyle \int _{a}^{b}f(x)dx\simeq \sum _{i=0}^{n}\alpha _{i}f(x_{i})\,} \int _{a}^{b}f(x)dx\simeq \sum _{{i=0}}^{{n}}\alpha _{i}f(x_{i})$$,
+%onde ${\displaystyle \{\alpha _{i}\}\,} \{\alpha _{i}\}$, são coeficientes reais (chamados de pesos da quadratura) e ${\displaystyle \{x_{i}\}\,} \{x_{i}\}$, são pontos de $\displaystyle [a,b]$, $\displaystyle [a,b]$,(chamados de pontos da quadratura) .[2]
+%\end{frame}
+%
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+					
+%\begin{frame}
+%\frametitle{}
+%\end{frame}
+\begin{frame}
+\frametitle{Referências}
+NUMERICAL RECIPES: The art of science computing. Press et al. Cambridge, 2007\\
+<http://mathforcollege.com/nm/mws/gen/07int/mws\_gen\_int\_txt\_gaussquadrature.pdf> Acesso em 12-06-2019.\\
+CÁLCULO NUMÉRICO: Aspectos teóricos e computacionais. Ruggiero e Lopes. Pearson, 2ed, São Paulo.
+\end{frame}
+%\begin{frame}
+%\frametitle{Derivação da fórmula de área}
+%\end{frame}
+%\begin{frame}
+%\frametitle{Derivação da fórmula de área}
+%\end{frame}
+\end{document}
