@@ -3,10 +3,16 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+\usepackage{enumerate}
+\usepackage{appendix}
 %\usepackage[portuges]{babel}
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
-
+\usepackage{siunitx}
+\usepackage[lastexercise]{exercise}
+\sisetup{group-separator={.}}
+\sisetup{output-decimal-marker={,}}
+\sisetup{group-minimum-digits=4}
 %\input{/home/mateus/ban/funcoes.tex}
 %\input{/home/mateus/ban/trig.tex}
 
@@ -26,65 +32,282 @@
     \theoremstyle{plain}
     \newtheorem{lemma}{Lema}
 
+    \theoremstyle{plain}
+    \newtheorem{example}{Exemplo}
+
+    \title{Matemática Financeira}
+    \author{Mateus Schroeder da Silva}
+    \date{\today}
+
 \begin{document}
-    Juros simples
-    Para o cálculo de juros simples com uma iteração de tempo usamos a fórmula:
-    $$J = P \cdot i$$, onde \\
-    J: é o juros, o valor que o dinheiro aplicado "rendeu".
-    P: é o dinheiro aplicado
-    i: é a taxa de juros (no mesmo tempo de iteração da aplicação).
-    Exemplo: Aplicar um capital de $R\$ 1000 $ com uma taxa de juros de $1\%$ ao mês (ou a.m.) por $1$ mês.
-    Exemplo: Aplicar um capital de $R\$ 1000 $ com uma taxa de juros de $10\%$ ao ano (ou a.a.) por $1$ ano.
+    \maketitle
+    \chapter{Juro simples}
+    \begin{definition}[Juro]
+        Juro é o valor que uma quantia em dinheiro "rende", se aplicada. \\
+        É denotado pela letra $J$.
+    \end{definition}
+    \begin{definition}[Capital]
+        O capital é o dinheiro que alguém tem a propriedade.
+        É denotado pela letra $C$.
+    \end{definition}
+    \begin{definition}[Principal]
+        O mesmo que Capital.
+        É denotado pela letra $P$.
+    \end{definition}
+    \begin{definition}[Taxa de juro]
+        A taxa de juro é um número que define quanto o capital aplicado rende em cada período.
+        É denotado pela letra $i$.
+    \end{definition}
+%    \begin{definition}[Aplicação]
+%        Aplicação é o nome dado à possibilidade de compra de um bem (ou papéis).
+%        Dividem-se em renda fixa ou renda variável, sendo renda fixa quando a taxa de juro é fixa, e sendo 
+%        renda variável caso contrário.
+%        Ainda, dentro da renda variável
+%    \end{definition}
+    Para o cálculo de juro simples com uma iteração de tempo usamos a fórmula:
+    $$J = P \cdot i$$
+    \begin{example}
+        Aplicar um capital de $R\$ \num{1000} $ com uma taxa de juros de $1\%$ ao mês (ou a.m.) por $1$ mês.
+    \end{example}
+    \begin{example}
+        Aplicar um capital de $R\$ \num{1000} $ com uma taxa de juros de $10\%$ ao ano (ou a.a.) por $1$ ano.
+    \end{example}
+    \begin{remark}
+        O cálculo só deverá ser efetuado $1$ vez. E é isto o que se quer dizer com "uma iteração de tempo".
+    \end{remark}
     
     Para calcular quanto de juros é gerado por $n$ iterações 
     de tempo modificamos a fórmula e ficamos com:
     $$J = P \cdot i \cdot n$$
     Uma característica dos juros simples é que cada iteração o valor gerado de juros é o mesmo. 
-    Consideremos o caso a seguir.
+    Consideremos o exemplo a seguir.
 
-    Exemplo: Aplicar um capital de $R\$ 1000 $ com uma taxa de juros de $10\%$aa por $5$ anos.
-    No primeiro ano temos $J_1 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
-    No segundo ano temos $J_2 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
-    No terceiro ano temos $J_3 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
-    No quarto ano temos $J_4 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
-    No quinto ano temos $J_5 = P \cdot i \cdot n = R\$ 1000 \cdot 0,10 = R\$ 100$ \\
-    Onde $J_k$ representa o juro gerado na iteração $k$ (neste caso em cada ano).
+    \begin{example}
+        Aplicar um capital de $R\$ \num{1000}$ com uma taxa de juros de $10\%$aa por $5$ anos.
+        \begin{align*}
+            \text{No primeiro ano temos}\ J_1 &= P \cdot i \cdot n = R\$ \num{1000} \cdot \num{.10} = R\$ 100 \\
+            \text{No segundo ano temos}\ J_2 &= P \cdot i \cdot n = R\$ \num{1000} \cdot \num{.10} = R\$ 100 \\
+            \text{No terceiro ano temos}\ J_3 &= P \cdot i \cdot n = R\$ \num{1000} \cdot \num{.10} = R\$ 100 \\
+            \text{No quarto ano temos}\ J_4 &= P \cdot i \cdot n = R\$ \num{1000} \cdot \num{.10} = R\$ 100 \\
+            \text{No quinto ano temos}\ J_5 &= P \cdot i \cdot n = R\$ \num{1000} \cdot \num{.10} = R\$ 100
+        \end{align*}
+        Onde $J_k$ representa o juro gerado na iteração $k$ (neste caso em cada ano).
+    \end{example}
 
     Após a aplicação do capital, no ato da retirada não retiramos
     somente o juros gerado, mas também o principal aplicado.
     \begin{example}
         Ao aplicar $R\$ 500$ com taxa de $1\%$ am, por $12$ meses temos $J = R\$ 500 \cdot 0,01 \cdot 12 = R\$ 60 $. \\
         Complicado ao final do período poder retirar somente $R\$ 60$, não? Mas pode ser 
-        retirado também o valor aplicado, neste caso $BRL 500$.
+        retirado também o valor aplicado, neste caso $R\$ 500$.
     \end{example}
-    \begin{definition}{Montante}
-        É o valor retirado no vencimento da aplicação. É calculado pela fórmula: $M = J + P$.
+    \begin{definition}[Montante]
+        É o valor que corresponde à soma do juro gerado com o capital aplicado.
+        É denotado pela letra $M$.
     \end{definition}
-    \begin{definition}{Vencimento}
+        Naturalmente, é calculado pela fórmula: $M = J + P$.
+    \begin{definition}[Vencimento]
         É a data mínima que o montante poderá ser retirado.
     \end{definition}
-    Isso quer dizer que se uma aplicação tem vencimento em $1$ ano, ele não poderá^1 ser retirado antes disso. \\
-    ^1: Varia de acordo com a aplicação escolhida. Algumas têm período de carência, outras deixam retirar 
+    Isso quer dizer que se uma aplicação tem vencimento em $1$ ano, ele não poderá \footnote{Varia de acordo 
+    com a aplicação escolhida. Algumas têm período de carência, outras deixam retirar 
     parte do valor que seria obtido no vencimento. Alguns títulos podem ser vendidos no mercado secundário.
-    
-    $$This was intended to have a lot of exercises! LMFAO $$
+    } ser retirado antes disso.
+        
+    \section{Exercícios}
+    Os exercícios de juro simples são mais ilustrativos do que ilustrativos!
+    \begin{Exercise}[origin={exercicios.brasilescola.uol.com.br/}]
+        Uma pessoa aplicou o capital de $R\$ \num{1200.00}$ a uma taxa de $2\%$ ao mês durante $14$ meses. 
+        Determine os juros e o montante dessa aplicação.
+    \end{Exercise}
+    \begin{Exercise}[origin={exercicios.brasilescola.uol.com.br/}]
+        Um capital aplicado a juros simples durante $2$ anos, sob taxa de juros de $5\%$ ao mês, 
+        gerou um montante de $R\$ \num{26950.00}$. Determine o valor do capital aplicado. 
+    \end{Exercise}
 
-    %% NEW CHAPTER %%
-
-    Juro composto
-    Nos juros simples cada iteração gera o mesmo valor que todas as outras. 
-    No juro composto isso não acontece, porque cada iteração é calculada com o montante da iteração anterior 
-    (exeto na primeiríssima vez que é calculado imediatamente com o principal).
+    %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+    \chapter{Juro composto}
+    No juro simples cada iteração gera o mesmo valor que todas as outras na mesma aplicação,
+    porque cada iteração é calculada sobre o principal e sobre a taxa \footnote{Que são constantes, fixos}. 
+    No juro composto isso não acontece, porque cada iteração é calculada sobre o montante da iteração anterior 
+    e sobre a taxa
+    \footnote{exeto na primeiríssima vez que é calculado imediatamente com o principal}.
     \begin{example}
-        Vejamos uma tabela com o juro gerado por uma aplicação de $BRL 1000$ com uma taxa de $10\%am$ por $12$ meses.
+        Vejamos uma tabela com o juro gerado por uma aplicação de $R\$ \num{1000}$ com uma taxa de $10\%am$ por $4$ meses.
+        O tempo/iteração deve ser lido como "ao final da iteração 1" ou "ao final do mês 1" tem-se o juro $J_1$ e 
+        o montante $M_1$.
+        \begin{center}
+           \begin{tabular}{|c|c|c|c|c|}
+               \hline
+               iteração (em meses) & i             & P (em R\$)       & J (em R\$)       & M (em R\$) \\
+               \hline
+               1        & \num{0.10}    & \num{1000}    & \num{100.00}     & \num{1100.00} \\
+               2        & \num{0.10}    & \num{1000}    & \num{110.00}     & \num{1210.00} \\
+               3        & \num{0.10}    & \num{1000}    & \num{121.00}     & \num{1331.00} \\
+               4        & \num{0.10}    & \num{1000}    & \num{133.10}     & \num{1461.10} \\
+               \hline
+           \end{tabular}
+        \end{center}
+        Como é possível notar, cada nova iteração gera um juro levemente superior à iteração imediatamente anterior.
+        Desta forma, calculamos o juro composto assim:
+        \begin{align*}
+            M_1 &= P   + J_1    &= P + P \cdot i       &                   &= P(1+i)                &= P(1+i)^1 \\
+            M_2 &= M_1 + J_2    &= M_1 + M_1 \cdot i   &= M_1 (1 + i)      &= P(1+i)(1+i)           &= P(1+i)^2 \\
+            M_3 &= M_2 + J_3    &= M_2 + M_2 \cdot i   &= M_2 (1 + i)      &= P(1+i)(1+i)(1+i)      &= P(1+i)^3 \\
+            M_4 &= M_3 + J_4    &= M_3 + M_3 \cdot i   &= M_3 (1 + i)      &= P(1+i)(1+i)(1+i)(1+i) &= P(1+i)^4 \\
+        \end{align*}
     \end{example}
-    Como é possível notar, cada nova iteração gera um juro levemente superior à iteração imediatamente anterior.
-    Desta forma, calculamos o juro composto assim:
-    $M_1 = P + P \cdot i = P(1 + i)$ \\
-    $M_2 = M_1 + M_1 \cdot i = M_1 (1 + i) = P(1+i)(1+i)$ \\
-    $M_3 = M_2 + M_2 \cdot i = M_2 (1 + i) = P(1+i)(1+i)(1+i)$ \\
-    ...
-    $M_n = M_{n-1} + M_{n-1} \cdot i = M_{n-1}(1 + i) = P(1+i)^n$ \\
-    Portanto, para calcular quanto é o montante de uma aplicação usamos a fórmula: $M = P (1+i)^n$
+        De maneira geral temos: 
+        $$ M_n = M_{n-1} + J_n = M_{n-1} + M_{n-1} \cdot i = M_{n-1}(1 + i) = P(1+i)^n $$
+        Portanto\footnote{Normalmente fica subentendido que é no vencimento, senão um período deve ser indicado.}, 
+        para calcular quanto é o montante de uma aplicação usamos a fórmula: 
+        $$M = P (1+i)^n$$
+        
+        Observe que usando a fórmula obtida, conseguimos calcular
+        o montante num mês $n$ qualquer, sem ter que calcular os mêses anteriores,
+        mas a fórmula que obtivemos é somente uma "abreviação" do "conceito de juro composto",
+        e é o "conceito de juro composto" que utiliza-se do montante anterior. 
+
+        \begin{example}
+            Identificar o tempo mínimo que um capital de $R\$ \num{10000}$ deve ficar aplicado numa taxa
+            de $1\%am$ para que o montante seja $R\$ \num{20000}$. 
+            \begin{align}
+                \num{20000} &= \num{10000}(1+i)^n \\
+                2 \cdot \num{10000} &= \num{10000}(1+i)^n \\
+                2 &= (1+i)^n  \\
+                \log_{10} 2 &= \log_{10}(1+i)^n \\
+                \log_{10} 2 &= n \cdot \log_{10}(1+i) \\
+                \dfrac{\log_{10} 2}{\log_{10}(1+i)} &= n \\
+                \log_{1+i} 2 &= n \\
+                \log_{\num{1.01}} 2 &= n \approx \num{69.66}
+            \end{align}
+            No regime de juro simples com essa taxa precisaríamos de $100$ meses para duplicar a mesma quantia.
+            No regime de juro composto precisamos somente de 69 meses e meio.
+        \end{example}
     
+        \section{Exercícios}
+
+        \begin{Exercise}[origin={ENEM 2019, adaptado}]
+            Uma pessoa fez um depósito inicial de $R\$ \num{200.00}$ em um fundo de Investimentos que possui 
+            rendimento constante sob juros compostos de 5\% ao mês. Esse Fundo possui cinco planos de carência 
+            (tempo mínimo necessário de rendimento do Fundo sem movimentação do cliente). Os planos são: \\
+            • Plano A: carência de 10 meses;  \\
+            • Plano B: carência de 15 meses;  \\
+            • Plano C: carência de 20 meses;  \\
+            • Plano D: carência de 28 meses;  \\
+            • Plano E: carência de 40 meses.  \\
+            O objetivo dessa pessoa é deixar essa aplicação rendendo até que o valor inicialmente aplicado duplique, 
+            quando somado aos juros do fundo. Considere as aproximações: $\log 2 = 0,30$ e $\log 1,05 = 0,02$.
+            Para que essa pessoa atinja seu objetivo apenas no período de carência, mas com a menor 
+                carência possível, deverá optar pelo plano?
+        \end{Exercise}
+        \begin{Exercise}[origin={ENEM 2019, adaptado}]
+            Uma pessoa se interessou em adquirir um produto anunciado em uma loja. Negociou com o gerente e
+            conseguiu comprá-lo a uma taxa de juros compostos de $1\%$ ao mês. O primeiro pagamento será 
+            um mês após a aquisição do produto, e no valor de $R\$ \num{202.00}$. O segundo pagamento será 
+            efetuado um mês após o primeiro, e terá o valor de $R\$ \num{204.02}$. Para concretizar a 
+            compra, o gerente emitirá uma nota fiscal com o valor do produto à vista negociado com o cliente,
+            correspondendo ao financiamento aprovado.
+
+            O valor à vista, em real, que deverá constar na nota fiscal é de
+            \begin{enumerate}[A)]
+                \item \num{398.02}.
+                \item \num{400.00}.
+                \item \num{401.94}.
+                \item \num{404.00}.
+                \item \num{406.02}.
+            \end{enumerate}
+        \end{Exercise}
+
+        \begin{Exercise}[origin={ENEM 2019, adaptado}]
+            Um contrato de empréstimo prevê que quando uma parcela é paga de forma antecipada, conceder-se-á uma redução 
+            de juros de acordo com o período de antecipação. Nesse caso, paga-se o valor presente, que é o valor, naquele 
+            momento, de uma quantia que deveria ser paga em uma data futura. Um valor presente $P$ submetido a juros compostos 
+            com taxa $i$, por um período de tempo $n$, produz um valor futuro $V$ determinado pela fórmula
+            $$V = P(1+i)^n$$
+            Em um contrato de empréstimo com sessenta parcelas fixas mensais, de $R\$ \num{820.00}$, a uma taxa de juros
+            de $\num{1.32}\%$ ao mês, junto com a trigésima parcela será paga antecipadamente uma outra parcela, 
+            desde que o desconto seja superior a $25\%$ do valor da parcela.
+
+            Utilize $0,2877$ como aproximação para $\ln \dfrac{4}{3}$ e $0,0131$ como aproximação 
+            para $\ln 1,0132$. 
+            A primeira das parcelas que poderá ser antecipada junto com a 30ª é a
+
+            \begin{enumerate}[A)]
+                \item 56ª.
+                \item 55ª.
+                \item 52ª.
+                \item 51ª.
+                \item 45ª.
+            \end{enumerate}
+        \end{Exercise}
+    \chapter{Taxas de juros}
+    As taxas tem seu período indicado, algumas são ao mês, ao bimestre, e assim por diante. 
+    A comparação de taxas ou "transformação de taxas" baseia-se na ideia que em um período
+    de tempo T, um mesmo capital deve gerar o mesmo juro.
+    \begin{definition}{Taxas equivalentes}
+        Taxas equivalentes são taxas que aplicadas sobre o mesmo capital, num mesmo 
+        período de tempo, geram o mesmo juro.
+    \end{definition}
+    Para estes fins, denotarei por $i$ a taxa de juros de período menor e $I$ a de período maior.
+    \begin{example}
+        A juro simples, considere um capital de $R\$ \num{5000.00}$. Qual taxa anual é equivalente à taxa mensal de $1\%$? \\
+        \begin{align}
+            P i n = J = P I N \\
+            \num{5000.00} \cdot 0,01 \cdot 12 = \num{5000.00} \cdot I \cdot 1 \\
+            \num{600.00} = \num{5000.00} \cdot I  \\
+            \dfrac{\num{600.00}}{\num{5000.00}} = I \\
+            0,12 = I 
+        \end{align}
+    \end{example}
+    Agora vamos verificar que a taxa equivalente pode ser encontrada sem conhecermos o juro, capital ou montante.
+    Isto é, as taxas equivalentes se relacionam somente pelo seus valores e pelo tempo.
+    \begin{align}
+        P i n = J = P I N \\
+        P i n = P I N \\
+        i n = I N
+    \end{align}
+    Onde $n$ é o \emph{número de iterações} da taxa de "menor" tempo e $N$ o de "maior" tempo.
+    \begin{example}
+        Encontrar a taxa equivalente anual em juro simples de uma taxa de $1\%am$. \\
+        \begin{align}
+            i n = I N \\
+            0,01 \cdot 12 = I \cdot 1 \\
+            0,12 = I
+        \end{align}
+    \end{example}
+    Para juro composto a ideia é a mesma: taxas equivalentes geram juro equivalente no mesmo tempo. Isso se expressa,
+    no juro composto, como:
+    \begin{align}
+        P \cdot (1+I)^N &= P \cdot (1+i)^n \\
+        (1+I)^N         &= (1+i)^n \label{eq-taxa-equivalentes-jc}
+    \end{align}
+    Repare que tem-se quatro incógnitas na fórmula \ref{eq-taxa-equivalentes-jc}, a saber $I$, $N$, $i$ e $n$. I 
+    \begin{example}
+        Encontrar a taxa equivalente anual em juro composto de uma taxa de $1\%am$. \\
+        \begin{align}
+            (1+I)^N = (1,01)^{n} \\
+            (1+I)^1 = (1,01)^{12} \\
+            1+I = 1,1268 \\
+            I = 12,66\%aa 
+        \end{align}
+    \end{example}
+    \begin{example}
+        Encontrar a taxa mensal equivalente à taxa de $20\%aa$.
+            (1+I)^N = (1,01)^{n} \\
+    \end{example}
+
+    \appendix
+    \section{Números e funções Reais}
+    O logaritmo é definido da seguinte forma: \\
+    $$\log_a x = y \iff a^y = x$$
+    quando $a, x, y$ são positivos (estritamente maiores que zero). O símbolo $\iff$ significa 
+    que são equivalentes, é "semelhante" à uma igualdade, mas \\
+    $5 + 10 + x = x + 15 \iff x+1 = x+1$, mas note que $15+x \neq x+1$.
+    \begin{example}
+        $\log_{10} 1000 = 3$, pois $10^3 = 1000$
+    \end{example}
+    A propriedade a seguir é útil para encontrar o tempo necessário para uma aplicação chegar em determinado valor.
+    $$\log a^n = n \log a$$
+
 \end{document}
